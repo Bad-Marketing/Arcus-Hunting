@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Arcus Hunting / Tink's — Amazon Growth Strategy</title>
+<link rel="icon" href="favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800;900&family=Figtree:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--black:#181B1F;--red:#F67A1C;--red-dark:#c96214;--white:#F2F4F6;--grey:#8A9099;--light-grey:#2B2F36;--charcoal:#21252B;--off-white:#181B1F;--green:#3FCF7A;--amber:#E2A53C;--blue:#1273C8;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Figtree',sans-serif;background:var(--off-white);color:var(--white);overflow-x:hidden;}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--charcoal);border-bottom:1px solid var(--light-grey);height:60px;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;}
+  .nav-brand{font-family:'Gabarito',sans-serif;font-size:1.3rem;font-weight:800;color:var(--white);letter-spacing:.02em;white-space:nowrap;}
+  .nav-brand span{color:var(--red);}
+  .nav-links{display:flex;align-items:center;}
+  .nav-links a{padding:0 .7rem;line-height:60px;font-family:'IBM Plex Mono',monospace;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);text-decoration:none;transition:color .2s;white-space:nowrap;}
+  .nav-links a:hover{color:var(--red);}
+  .hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:4px;width:36px;height:36px;}
+  .hamburger span{display:block;width:22px;height:2px;background:var(--white);transition:all .3s;}
+
+  /* MOBILE NAV */
+  .nav-mobile{display:none;position:fixed;top:60px;left:0;right:0;z-index:99;background:var(--charcoal);border-bottom:1px solid var(--light-grey);max-height:calc(100vh - 60px);overflow-y:auto;}
+  .nav-mobile.open{display:block;}
+  .nav-mobile a{display:block;padding:.8rem 1.5rem;font-family:'IBM Plex Mono',monospace;font-size:.82rem;font-weight:600;letter-spacing:.08em;color:var(--grey);text-decoration:none;text-transform:uppercase;border-bottom:1px solid var(--light-grey);transition:color .2s;}
+  .nav-mobile a:hover{color:var(--red);}
+
+  /* PROGRESS BAR */
+  #progress{position:fixed;top:60px;left:0;right:0;z-index:99;height:3px;background:var(--red);transform-origin:left;transform:scaleX(0);transition:transform .1s linear;}
+
+  /* COVER */
+  #cover{min-height:100vh;background:var(--black);display:grid;place-items:center;padding:6rem 2rem 4rem;position:relative;overflow:hidden;}
+  #cover::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(246,122,28,0.10) 0%,transparent 60%);pointer-events:none;}
+  .cover-inner{max-width:1200px;width:100%;}
+  .cover-title{font-family:'Gabarito',sans-serif;font-weight:900;line-height:.9;text-transform:uppercase;}
+  .cover-title .line-white{font-size:clamp(3rem,11vw,11rem);color:var(--white);display:block;}
+  .cover-title .line-red{font-size:clamp(1.8rem,5.5vw,5rem);color:var(--red);display:block;margin-top:.35rem;}
+  .cover-rule{width:100%;height:2px;background:var(--red);margin:2rem 0;transform:scaleX(0);transform-origin:left;animation:ruleIn .8s .6s cubic-bezier(.16,1,.3,1) forwards;}
+  @keyframes ruleIn{to{transform:scaleX(1);}}
+  .cover-tagline{font-size:1rem;color:var(--grey);font-style:italic;margin-bottom:3rem;}
+  .cover-byline{font-family:'IBM Plex Mono',monospace;font-size:.7rem;font-weight:600;letter-spacing:.15em;color:#5b6169;text-transform:uppercase;}
+  .fade-up{opacity:0;transform:translateY(24px);animation:fadeUp .7s cubic-bezier(.16,1,.3,1) forwards;}
+  @keyframes fadeUp{to{opacity:1;transform:none;}}
+  .cover-title{animation-delay:.2s;}.cover-tagline{animation-delay:.7s;}.cover-byline{animation-delay:.9s;}
+
+  /* SECTIONS */
+  .content{max-width:1200px;margin:0 auto;padding:0 3rem;}
+  .section{padding:5rem 0 2rem;opacity:0;transform:translateY(32px);transition:opacity .6s ease,transform .6s ease;}
+  .section.visible{opacity:1;transform:none;}
+  .section-header{background:var(--black);border:1px solid var(--light-grey);border-radius:12px;padding:1rem 1.5rem;display:flex;align-items:baseline;gap:.75rem;margin-bottom:2rem;}
+  .section-num{font-family:'Gabarito',sans-serif;font-size:1.3rem;font-weight:900;color:var(--red);}
+  .section-title{font-family:'Gabarito',sans-serif;font-size:2rem;font-weight:800;letter-spacing:.01em;color:var(--white);text-transform:none;}
+  .sub-heading{font-family:'Gabarito',sans-serif;font-size:1.2rem;font-weight:700;letter-spacing:.01em;text-transform:none;color:var(--white);border-left:4px solid var(--red);padding-left:.75rem;margin:2rem 0 .85rem;}
+  .red-label{font-family:'IBM Plex Mono',monospace;font-size:.85rem;font-weight:600;letter-spacing:.12em;color:var(--red);text-transform:uppercase;margin:1.5rem 0 .5rem;}
+  p{font-size:1.05rem;line-height:1.7;color:var(--white);margin-bottom:.85rem;}
+  .callout{background:var(--charcoal);border:1px solid var(--light-grey);border-left:4px solid var(--red);border-radius:8px;padding:1rem 1.25rem;margin:1.5rem 0;}
+  .callout p{color:var(--white);font-style:italic;margin:0;font-size:1.05rem;line-height:1.7;}
+
+  /* PRIORITY TERM HIGHLIGHT */
+  .term-highlight{background:var(--charcoal);border:1px solid var(--light-grey);border-left:4px solid var(--red);border-radius:8px;padding:1.25rem 1.5rem;margin:1rem 0 1.5rem;}
+  .term-highlight-tags{display:flex;flex-wrap:wrap;gap:.6rem;}
+  .term-tag{background:var(--light-grey);color:var(--white);font-family:'IBM Plex Mono',monospace;font-size:.82rem;font-weight:600;letter-spacing:.02em;padding:.55rem 1.1rem;border-radius:6px;white-space:nowrap;border-left:3px solid var(--red);}
+  .bullet-list{list-style:none;margin:.5rem 0 1rem 0;}
+  .bullet-list li{font-size:1rem;line-height:1.65;color:var(--white);padding:.25rem 0 .25rem 1.4rem;position:relative;}
+  .bullet-list li::before{content:'–';position:absolute;left:0;color:var(--red);font-weight:700;}
+  .sub-bullet-list{list-style:none;margin:.35rem 0 .35rem 1.5rem;}
+  .sub-bullet-list li{font-size:.95rem;line-height:1.6;color:var(--grey);padding:.2rem 0 .2rem 1.2rem;position:relative;}
+  .sub-bullet-list li::before{content:'›';position:absolute;left:0;color:var(--grey);font-weight:700;}
+  .num-list{list-style:none;margin:.5rem 0 1rem 0;counter-reset:numlist;}
+  .num-list li{font-size:1rem;line-height:1.65;color:var(--white);padding:.3rem 0 .3rem 2rem;position:relative;counter-increment:numlist;}
+  .num-list li::before{content:counter(numlist)'.';position:absolute;left:0;color:var(--red);font-weight:700;font-family:'Gabarito',sans-serif;}
+
+  /* PHASE / PRIORITY BOX */
+  .phase-box{display:flex;gap:1.1rem;background:var(--charcoal);padding:1.25rem 1.5rem;margin:1rem 0;align-items:flex-start;}
+  .phase-num{font-family:'Gabarito',sans-serif;font-size:2rem;font-weight:900;color:var(--red);line-height:1;flex-shrink:0;}
+  .phase-title{font-family:'Gabarito',sans-serif;font-size:1.15rem;font-weight:800;letter-spacing:.01em;text-transform:none;color:var(--white);margin-bottom:.4rem;}
+  .phase-content p{color:var(--grey);margin-bottom:.5rem;}
+  .phase-content .bullet-list li{font-size:.97rem;color:var(--grey);}
+  .phase-content .bullet-list li::before{color:var(--red);}
+  .phase-content .red-label{color:var(--red);margin:1rem 0 .35rem;}
+
+  /* PRIORITY CARD (Immediate Priorities) */
+  .priority-card{background:var(--charcoal);border:1px solid var(--light-grey);border-left:4px solid var(--red);border-radius:8px;padding:1.1rem 1.5rem;margin-bottom:1rem;}
+  .priority-title{font-family:'Gabarito',sans-serif;font-weight:800;letter-spacing:.01em;text-transform:none;font-size:1.05rem;color:var(--white);margin-bottom:.4rem;}
+  .priority-body{font-size:.98rem;line-height:1.6;color:var(--grey);}
+
+  /* INSIGHT TABLE (2-col) */
+  .insight-table{width:100%;border-collapse:collapse;margin:1.5rem 0;}
+  .insight-table tr{border-bottom:1px solid var(--light-grey);}
+  .insight-table td{padding:.9rem 1rem;font-size:1rem;vertical-align:top;}
+  .insight-table td:first-child{background:var(--light-grey);width:25%;font-family:'IBM Plex Mono',monospace;font-size:.78rem;font-weight:600;letter-spacing:.1em;color:var(--red);text-transform:uppercase;line-height:1.4;}
+  .insight-table td:last-child{background:var(--charcoal);color:var(--white);line-height:1.6;}
+
+  /* MONTHLY SEASONALITY BAR CHART */
+  .season-chart{display:flex;align-items:flex-end;gap:.6rem;margin:1.75rem 0 0;padding:1.5rem 1.25rem .25rem;background:var(--charcoal);border:1px solid var(--light-grey);border-radius:8px;}
+  .season-bar-col{flex:1;display:flex;flex-direction:column;align-items:center;min-width:0;}
+  .season-bar-value{font-family:'IBM Plex Mono',monospace;font-size:.68rem;font-weight:600;color:var(--grey);margin-bottom:.4rem;white-space:nowrap;}
+  .season-bar-col.peak .season-bar-value{color:var(--red);}
+  .season-bar-track{height:150px;display:flex;align-items:flex-end;justify-content:center;width:100%;}
+  .season-bar{width:100%;max-width:34px;background:var(--light-grey);border-radius:3px 3px 0 0;min-height:4px;}
+  .season-bar-col.peak .season-bar{background:var(--red);}
+  .season-bar-label{font-family:'IBM Plex Mono',monospace;font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--grey);margin-top:.6rem;}
+  .season-bar-col.peak .season-bar-label{color:var(--white);}
+  .season-legend{display:flex;gap:1.5rem;flex-wrap:wrap;margin:.9rem 0 1.5rem;}
+  .season-legend-item{display:flex;align-items:center;gap:.45rem;}
+  .season-legend-swatch{width:12px;height:12px;border-radius:2px;display:inline-block;flex-shrink:0;}
+  .season-legend-lbl{font-family:'IBM Plex Mono',monospace;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--grey);}
+  @media(max-width:600px){
+    .season-chart{gap:.28rem;padding:1.15rem .4rem .2rem;}
+    .season-bar-track{height:110px;}
+    .season-bar{max-width:20px;}
+    .season-bar-value{font-size:.54rem;margin-bottom:.25rem;}
+    .season-bar-label{font-size:.54rem;margin-top:.4rem;}
+  }
+
+  /* MATRIX / DATA TABLE (multi-column) */
+  .matrix-wrap{width:100%;overflow-x:auto;margin:1.5rem 0;}
+  .matrix-table{width:100%;border-collapse:collapse;min-width:640px;background:var(--charcoal);border:1px solid var(--light-grey);border-radius:8px;overflow:hidden;}
+  .matrix-table th{background:var(--black);color:var(--white);font-family:'IBM Plex Mono',monospace;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.85rem 1rem;text-align:left;border-bottom:2px solid var(--red);}
+  .matrix-table th:first-child{background:var(--black);color:var(--red);}
+  .matrix-table td{padding:.8rem 1rem;font-size:.92rem;line-height:1.5;color:var(--white);border-bottom:1px solid var(--light-grey);vertical-align:top;}
+  .matrix-table td:first-child{background:var(--light-grey);color:var(--red);font-family:'IBM Plex Mono',monospace;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;}
+  .matrix-table tr:last-child td{border-bottom:none;}
+
+  /* COMPACT TABLE VARIANT — for tables that should stay a table on mobile, just tighter (no horizontal scroll) */
+  .matrix-wrap.compact-table{overflow-x:visible;}
+  .matrix-table.compact-table{min-width:0;table-layout:fixed;}
+  .matrix-table.compact-table th,
+  .matrix-table.compact-table td{padding:.7rem .5rem;white-space:normal;word-break:break-word;}
+  @media(max-width:600px){
+    .matrix-table.compact-table th{padding:.5rem .3rem;font-size:.6rem;letter-spacing:.02em;line-height:1.2;}
+    .matrix-table.compact-table td{padding:.5rem .3rem;font-size:.7rem;line-height:1.3;}
+    .matrix-table.compact-table td:first-child{font-size:.6rem;letter-spacing:.02em;}
+  }
+
+  /* FRAMEWORK TABLE — responsive: horizontal table on desktop, stacked phase cards on mobile */
+  .framework-desktop{display:block;}
+  .framework-mobile{display:none;}
+  .fw-card{background:var(--charcoal);border:1px solid var(--light-grey);border-top:3px solid var(--red);border-radius:8px;padding:1.15rem 1.3rem;margin-bottom:1rem;}
+  .fw-card-title{font-family:'Gabarito',sans-serif;font-weight:800;font-size:1.15rem;letter-spacing:.01em;text-transform:none;color:var(--white);margin-bottom:.15rem;}
+  .fw-card-timing{font-family:'IBM Plex Mono',monospace;font-size:.72rem;font-weight:600;letter-spacing:.12em;color:var(--red);text-transform:uppercase;margin-bottom:1rem;}
+  .fw-row{padding:.6rem 0;border-top:1px solid var(--light-grey);}
+  .fw-row:first-of-type{border-top:none;padding-top:0;}
+  .fw-row-label{font-family:'IBM Plex Mono',monospace;font-size:.64rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--grey);margin-bottom:.25rem;}
+  .fw-row-value{font-size:.92rem;line-height:1.55;color:var(--white);}
+  @media(max-width:700px){
+    .framework-desktop{display:none;}
+    .framework-mobile{display:block;}
+  }
+
+  /* FLOW DIAGRAM */
+  .flow{display:flex;flex-direction:column;align-items:stretch;gap:0;margin:2rem 0;}
+  .flow-tile{background:var(--charcoal);border:1px solid var(--light-grey);border-left:4px solid var(--red);border-radius:8px;padding:1.1rem 1.5rem;text-align:left;width:100%;}
+  .flow-tile-title{font-family:'Gabarito',sans-serif;font-weight:800;letter-spacing:.01em;text-transform:none;font-size:1.05rem;color:var(--white);margin-bottom:.4rem;}
+  .flow-tile-body{font-size:.95rem;line-height:1.6;color:var(--grey);}
+  .flow-arrow{color:var(--red);font-size:1.3rem;line-height:1;padding:.35rem 0;font-weight:900;align-self:center;}
+
+  /* MOOD BOARD */
+  .moodboard-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.85rem;margin:1.5rem 0;}
+  .moodboard-grid img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:14px;display:block;}
+  @media(max-width:700px){
+    .moodboard-grid{grid-template-columns:repeat(2,1fr);gap:.6rem;}
+  }
+
+  /* COMMENTS */
+  .section-comment-btn{display:inline-flex;align-items:center;gap:.4rem;margin-top:1.5rem;background:transparent;border:1.5px solid var(--light-grey);border-radius:999px;padding:.45rem .9rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--grey);transition:all .2s;}
+  .section-comment-btn:hover{border-color:var(--red);color:var(--red);}
+  .section-comment-btn .cb-count{background:var(--red);color:var(--black);font-size:.72rem;font-weight:700;padding:.1rem .4rem;border-radius:999px;min-width:20px;text-align:center;display:none;}
+  .section-comment-btn.has-comments .cb-count{display:inline-block;}
+  .comment-panel{display:none;border:1px solid var(--light-grey);border-radius:8px;background:var(--charcoal);margin-top:.75rem;}
+  .comment-panel.open{display:block;}
+  .comment-panel-inner{padding:1.25rem;}
+  .comment-thread{margin-bottom:1rem;}
+  .comment-item{border-left:3px solid var(--red);border-radius:0 6px 6px 0;padding:.75rem 1rem;margin-bottom:.75rem;background:var(--light-grey);}
+  .comment-item-header{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.25rem;margin-bottom:.35rem;}
+  .comment-item-name{font-family:'Gabarito',sans-serif;font-weight:700;font-size:1rem;color:var(--white);}
+  .comment-item-time{font-size:.72rem;color:var(--grey);}
+  .comment-item-text{font-size:.95rem;line-height:1.6;color:var(--white);}
+  .no-comments{font-size:.9rem;color:var(--grey);font-style:italic;margin-bottom:1rem;}
+  .comment-form textarea{width:100%;padding:.6rem .75rem;border:1px solid var(--light-grey);border-radius:6px;font-family:'Figtree',sans-serif;font-size:.95rem;resize:vertical;outline:none;background:var(--black);color:var(--white);display:block;margin-bottom:.5rem;}
+  .comment-form-row{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;}
+  .comment-form input[type=text]{flex:1;min-width:140px;padding:.5rem .65rem;border:1px solid var(--light-grey);border-radius:6px;font-family:'Figtree',sans-serif;font-size:.95rem;outline:none;background:var(--black);color:var(--white);}
+  .comment-post-btn{background:var(--red);color:var(--black);border:none;border-radius:999px;padding:.5rem 1.25rem;font-family:'Figtree',sans-serif;font-size:.9rem;font-weight:600;letter-spacing:.02em;text-transform:none;cursor:pointer;white-space:nowrap;}
+  .comment-post-btn:hover{background:var(--red-dark);}
+  .comment-post-btn:disabled{opacity:.5;cursor:default;}
+  .comment-status{font-size:.82rem;color:var(--grey);margin-top:.35rem;}
+
+  /* FOOTER */
+  footer{background:var(--black);border-top:1px solid var(--light-grey);padding:4rem 3rem;display:flex;justify-content:center;align-items:center;}
+
+  /* ================= TRACKER ================= */
+  .tk-phase{margin-bottom:2.5rem;}
+  .tk-phase-hdr{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;}
+  .tk-phase-rule{flex:1;height:1px;background:var(--light-grey);}
+  .tk-phase-pill{background:var(--black);border:1px solid var(--light-grey);border-radius:999px;padding:.55rem 1.25rem;display:flex;align-items:baseline;gap:.5rem;flex-shrink:0;}
+  .tk-phase-num{font-family:'Gabarito',sans-serif;font-size:1.5rem;font-weight:900;color:var(--red);}
+  .tk-phase-lbl{font-family:'IBM Plex Mono',monospace;font-size:.78rem;font-weight:600;letter-spacing:.1em;color:var(--white);text-transform:uppercase;}
+  .tk-phase-sub{font-family:'IBM Plex Mono',monospace;font-size:.68rem;font-weight:600;letter-spacing:.1em;color:var(--grey);text-transform:uppercase;margin:-.6rem 0 1rem;}
+  .tk-progress-wrap{background:var(--charcoal);border:1px solid var(--light-grey);border-radius:8px;padding:1.1rem 1.4rem;margin-bottom:2rem;display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;}
+  .tk-progress-stat{font-family:'Gabarito',sans-serif;font-size:1.6rem;font-weight:900;color:var(--white);white-space:nowrap;}
+  .tk-progress-stat span{color:var(--red);}
+  .tk-progress-track{flex:1;min-width:160px;height:8px;background:var(--light-grey);border-radius:4px;overflow:hidden;}
+  .tk-progress-fill{height:100%;background:var(--red);border-radius:4px;transition:width .5s ease;}
+  .tk-progress-lbl{font-family:'IBM Plex Mono',monospace;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);}
+
+  .tk-item-list{display:flex;flex-direction:column;gap:.85rem;}
+  .tk-card{background:var(--charcoal);border:1px solid var(--light-grey);border-radius:10px;padding:1.1rem 1.25rem 1.25rem;}
+  .tk-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;padding-bottom:.9rem;border-bottom:1px solid var(--light-grey);margin-bottom:1rem;}
+  .tk-action-wrap{flex:1;min-width:0;}
+  .tk-action{font-size:1.02rem;font-weight:700;line-height:1.4;color:var(--white);}
+  .tk-action.hidden{display:none;}
+  .tk-card-controls{display:flex;align-items:center;gap:.5rem;flex-shrink:0;}
+  .tk-icon-btn{position:relative;background:var(--black);border:1px solid var(--light-grey);border-radius:6px;width:34px;height:34px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--grey);flex-shrink:0;transition:all .15s;}
+  .tk-icon-btn:hover{border-color:var(--red);color:var(--red);}
+  .tk-icon-btn.has-comments{color:var(--white);}
+  .tk-comment-btn{position:relative;background:var(--black);border:1px solid var(--light-grey);border-radius:6px;height:34px;padding:0 .65rem;cursor:pointer;display:inline-flex;align-items:center;gap:.35rem;color:var(--grey);flex-shrink:0;transition:all .15s;font-family:'IBM Plex Mono',monospace;font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;}
+  .tk-comment-btn:hover{border-color:var(--red);color:var(--red);}
+  .tk-comment-btn.has-comments{color:var(--white);border-color:#3a3f47;}
+  .tk-badge{position:absolute;top:-7px;right:-7px;background:var(--red);color:var(--black);font-size:.62rem;font-weight:700;border-radius:8px;min-width:16px;height:16px;padding:0 3px;display:flex;align-items:center;justify-content:center;line-height:1;}
+
+  .tk-status-label{font-family:'IBM Plex Mono',monospace;font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);margin-bottom:.5rem;display:block;}
+  select.tk-status-select{width:100%;display:block;text-align:center;text-align-last:center;-moz-text-align-last:center;padding:.7rem 1rem;border:none;border-radius:8px;font-family:'Gabarito',sans-serif;font-weight:700;letter-spacing:.02em;text-transform:none;font-size:.92rem;cursor:pointer;appearance:none;-webkit-appearance:none;}
+  .tk-status-select.status-pending{background:#2b2f36;color:var(--grey);}
+  .tk-status-select.status-in-progress{background:rgba(226,165,60,0.16);color:var(--amber);}
+  .tk-status-select.status-complete{background:rgba(63,207,122,0.16);color:var(--green);}
+
+  /* EDIT-IN-PLACE */
+  .tk-edit-wrap{display:none;margin-top:.4rem;}
+  .tk-edit-wrap.open{display:block;}
+  .tk-edit-textarea{width:100%;padding:.6rem .75rem;border:1.5px solid var(--red);border-radius:6px;font-family:'Figtree',sans-serif;font-size:.98rem;line-height:1.5;resize:vertical;outline:none;background:var(--black);color:var(--white);display:block;margin-bottom:.5rem;min-height:64px;}
+  .tk-edit-actions{display:flex;gap:.5rem;}
+  .tk-edit-save{background:var(--red);color:var(--black);border:none;border-radius:999px;padding:.45rem 1.1rem;font-family:'Figtree',sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.02em;text-transform:none;cursor:pointer;}
+  .tk-edit-save:hover{background:var(--red-dark);}
+  .tk-edit-save:disabled{opacity:.5;cursor:default;}
+  .tk-edit-cancel{background:transparent;color:var(--grey);border:1.5px solid var(--light-grey);border-radius:999px;padding:.45rem 1.1rem;font-family:'Figtree',sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.02em;text-transform:none;cursor:pointer;}
+  .tk-edit-cancel:hover{border-color:var(--red);color:var(--red);}
+
+  .tk-comment-panel{display:none;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--light-grey);}
+  .tk-comment-panel.open{display:block;}
+  .tk-comment-thread{margin-bottom:.75rem;display:flex;flex-direction:column;gap:.6rem;}
+  .tk-comment-item{border-left:3px solid var(--red);border-radius:0 6px 6px 0;padding:.6rem .85rem;background:var(--light-grey);}
+  .tk-comment-item-header{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.25rem;margin-bottom:.25rem;}
+  .tk-comment-item-name{font-family:'Gabarito',sans-serif;font-weight:700;font-size:.9rem;color:var(--white);}
+  .tk-comment-item-time{font-size:.72rem;color:var(--grey);}
+  .tk-comment-item-text{font-size:.9rem;line-height:1.55;color:var(--white);}
+  .tk-no-comments{font-size:.85rem;color:var(--grey);font-style:italic;margin-bottom:.75rem;}
+  .tk-comment-form textarea{width:100%;padding:.55rem .7rem;border:1px solid var(--light-grey);border-radius:6px;font-family:'Figtree',sans-serif;font-size:.9rem;resize:vertical;outline:none;background:var(--black);color:var(--white);display:block;margin-bottom:.5rem;min-height:52px;}
+  .tk-comment-form-row{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;}
+  .tk-comment-form input[type=text]{flex:1;min-width:130px;padding:.5rem .6rem;border:1px solid var(--light-grey);border-radius:6px;font-family:'Figtree',sans-serif;font-size:.9rem;outline:none;background:var(--black);color:var(--white);}
+  .tk-comment-post-btn{background:var(--red);color:var(--black);border:none;border-radius:999px;padding:.5rem 1.1rem;font-family:'Figtree',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.02em;text-transform:none;cursor:pointer;white-space:nowrap;}
+  .tk-comment-post-btn:hover{background:var(--red-dark);}
+  .tk-comment-post-btn:disabled{opacity:.5;cursor:default;}
+  .tk-comment-status{font-size:.78rem;color:var(--grey);margin-top:.3rem;}
+
+  /* DESKTOP TABLE (901px+) */
+  .tk-table-wrap{display:none;}
+  .tk-table{width:100%;border-collapse:collapse;background:var(--charcoal);border:1px solid var(--light-grey);border-radius:10px;overflow:hidden;}
+  .tk-table thead th{background:var(--black);color:var(--white);font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;text-align:left;padding:.75rem 1rem;font-weight:600;}
+  .tk-table thead th.tk-th-center{text-align:center;}
+  .tk-table tbody tr.tk-row{border-top:1px solid var(--light-grey);}
+  .tk-table tbody tr.tk-row:hover{background:var(--light-grey);}
+  .tk-table td{padding:.85rem 1rem;font-size:.95rem;color:var(--white);vertical-align:middle;}
+  .tk-table td.tk-td-action{font-weight:600;line-height:1.4;}
+  .tk-table td.tk-td-status{width:190px;}
+  .tk-table td.tk-td-comments{width:70px;text-align:center;}
+  .tk-table td.tk-td-edit{width:50px;text-align:center;}
+  .tk-table td.tk-td-delete{width:50px;text-align:center;}
+  .tk-table select.tk-status-select{font-size:.8rem;padding:.5rem .5rem;}
+  .tk-comment-row{display:none;}
+  .tk-comment-row.open{display:table-row;}
+  .tk-comment-row td{padding:0;border-top:none;}
+  .tk-comment-row-inner{padding:1.1rem 1.5rem 1.25rem;background:var(--light-grey);border-top:1px dashed var(--light-grey);}
+
+  .tk-add-form{display:flex;gap:.6rem;margin-top:.75rem;flex-wrap:wrap;}
+  .tk-add-form input{flex:1;min-width:220px;font-family:'Figtree',sans-serif;font-size:.95rem;padding:.55rem .7rem;border:1px solid var(--light-grey);border-radius:6px;background:var(--black);color:var(--white);}
+  .tk-add-btn{font-family:'Figtree',sans-serif;font-weight:600;letter-spacing:.02em;text-transform:none;font-size:.85rem;padding:.55rem 1.1rem;border:none;border-radius:999px;cursor:pointer;background:var(--red);color:var(--black);}
+  .tk-add-btn:hover{background:var(--red-dark);}
+  .tk-add-toggle{margin-top:.9rem;background:none;border:2px dashed var(--light-grey);border-radius:8px;width:100%;padding:.75rem;font-family:'IBM Plex Mono',monospace;font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:.78rem;color:var(--grey);cursor:pointer;}
+  .tk-add-toggle:hover{border-color:var(--red);color:var(--red);}
+
+  /* RESPONSIVE */
+  @media(max-width:768px){
+    .bhag-title{font-size:1.1rem !important;}
+  }
+  @media(max-width:900px){
+    .nav-links{display:none;}
+    .hamburger{display:flex;}
+    .content{padding:0 1.25rem;}
+    nav{padding:0 1.25rem;}
+    footer{padding:3rem 1.25rem;}
+    .cover-title .line-white{font-size:clamp(3rem,18vw,7rem);}
+    .cover-title .line-red{font-size:clamp(1.5rem,7vw,3rem);}
+    .section-title{font-size:1.3rem;}
+    #cover{padding:5rem 1.25rem 3rem;}
+  }
+  @media(min-width:901px){
+    .tk-body-mobile{display:none;}
+    .tk-table-wrap{display:block;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand"><span>ARCUS HUNTING</span> · TINK'S</div>
+  <div class="nav-links">
+    <a href="#s01">Overview</a>
+    <a href="#s02">Framework</a>
+    <a href="#s03">Growth Area 1</a>
+    <a href="#s04">Growth Area 2</a>
+    <a href="#s05">Growth Area 3</a>
+    <a href="#s06">Creative</a>
+    <a href="#s07">Tracker</a>
+  </div>
+  <div class="hamburger" onclick="toggleMenu()" id="hbg">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="#s01" onclick="toggleMenu()">Overview</a>
+  <a href="#s02" onclick="toggleMenu()">Seasonal Amazon Framework</a>
+  <a href="#s03" onclick="toggleMenu()">Growth Area 1</a>
+  <a href="#s04" onclick="toggleMenu()">Growth Area 2</a>
+  <a href="#s05" onclick="toggleMenu()">Growth Area 3</a>
+  <a href="#s06" onclick="toggleMenu()">Creative Direction</a>
+  <a href="#s07" onclick="toggleMenu()">Roadmap Tracker</a>
+</div>
+<div id="progress"></div>
+
+<!-- COVER -->
+<section id="cover">
+  <div class="cover-inner">
+    <div class="cover-title fade-up">
+      <span class="line-white">Arcus Hunting</span>
+      <span class="line-red">Tink's</span>
+    </div>
+    <div class="cover-rule"></div>
+    <p class="cover-tagline fade-up">Amazon Growth Strategy</p>
+    <p class="cover-byline fade-up">Prepared by FTR &nbsp;·&nbsp; Amazon &amp; Walmart Growth</p>
+  </div>
+</section>
+
+<!-- S01 — OVERVIEW -->
+<!-- S01 — STRATEGY OBJECTIVE -->
+<div class="section" id="s01">
+  <div class="content">
+    <div class="section-header"><span class="section-title">Overview</span></div>
+
+    <p>Maximize Tink's peak-season performance while growing non-branded customer acquisition and strengthening the Amazon shopping experience.</p>
+    <p>Tink's already has strong brand recognition and established relevance across high-intent deer scent searches. The focus is to prepare for peak, expand search share, and make the catalog easier to discover, understand, and shop.</p>
+    <p>Tink's follows a similar seasonal strategic framework to Dead Down Wind, with both brands heavily influenced by hunting-season demand. The same overall approach of preparing ahead of peak, scaling during the strongest demand period, and reducing investment as seasonal demand declines applies, while Tink's product priorities, search opportunities, and execution remain brand-specific.</p>
+
+    <div id="comments-s01"></div>
+  </div>
+</div>
+
+<!-- S02 — SEASONAL AMAZON FRAMEWORK -->
+<div class="section" id="s02">
+  <div class="content">
+    <div class="section-header"><span class="section-title">Seasonal Amazon Framework</span></div>
+
+    <p>Tink's sales and search volume are heavily concentrated around hunting season. Inventory, PPC, content, promotions, and events should be planned around the seasonal sales and search-volume cycle.</p>
+
+    <div class="matrix-wrap framework-desktop">
+      <table class="matrix-table">
+        <tr><th></th><th>Off-Season</th><th>Pre-Season</th><th>Peak Season</th><th>Post-Season</th></tr>
+        <tr><td>Timing</td><td>Feb – May</td><td>Jun – Jul</td><td>Aug – Dec</td><td>Jan</td></tr>
+        <tr><td>Inventory</td><td>Review prior season &amp; forecast</td><td>Build priority inventory</td><td>Protect Hero/Growth availability</td><td>Review inventory &amp; next-season needs</td></tr>
+        <tr><td>PPC / Search</td><td>Build search foundation</td><td>Increase investment ahead of peak</td><td>Scale proven branded &amp; non-branded opportunities</td><td>Reduce with seasonal search volume</td></tr>
+        <tr><td>Content</td><td>Develop Main Images, listings, A+, Brand Story &amp; video</td><td>Complete priority optimizations</td><td>Continue next priority ASINs</td><td>Review performance &amp; next optimization wave</td></tr>
+        <tr><td>Creators</td><td>Paused</td><td>Evaluate profitability</td><td>Activate/scale if approved</td><td>Review results</td></tr>
+        <tr><td>Brand Tailored Promotions</td><td>Limited</td><td>Activate relevant audiences</td><td>Run &amp; scale where performance supports it</td><td>Reduce/pause</td></tr>
+        <tr><td>Events</td><td>Prime Day Prep</td><td>Prime Day + Q4 event prep</td><td>Prime Big Deal Days + BFCM</td><td>Review results &amp; learnings</td></tr>
+      </table>
+    </div>
+
+    <div class="framework-mobile">
+
+      <div class="fw-card">
+        <div class="fw-card-title">Off-Season</div>
+        <div class="fw-card-timing">Feb – May</div>
+        <div class="fw-row"><div class="fw-row-label">Inventory</div><div class="fw-row-value">Review prior season &amp; forecast</div></div>
+        <div class="fw-row"><div class="fw-row-label">PPC / Search</div><div class="fw-row-value">Build search foundation</div></div>
+        <div class="fw-row"><div class="fw-row-label">Content</div><div class="fw-row-value">Develop Main Images, listings, A+, Brand Story &amp; video</div></div>
+        <div class="fw-row"><div class="fw-row-label">Creators</div><div class="fw-row-value">Paused</div></div>
+        <div class="fw-row"><div class="fw-row-label">Brand Tailored Promotions</div><div class="fw-row-value">Limited</div></div>
+        <div class="fw-row"><div class="fw-row-label">Events</div><div class="fw-row-value">Prime Day Prep</div></div>
+      </div>
+
+      <div class="fw-card">
+        <div class="fw-card-title">Pre-Season</div>
+        <div class="fw-card-timing">Jun – Jul</div>
+        <div class="fw-row"><div class="fw-row-label">Inventory</div><div class="fw-row-value">Build priority inventory</div></div>
+        <div class="fw-row"><div class="fw-row-label">PPC / Search</div><div class="fw-row-value">Increase investment ahead of peak</div></div>
+        <div class="fw-row"><div class="fw-row-label">Content</div><div class="fw-row-value">Complete priority optimizations</div></div>
+        <div class="fw-row"><div class="fw-row-label">Creators</div><div class="fw-row-value">Evaluate profitability</div></div>
+        <div class="fw-row"><div class="fw-row-label">Brand Tailored Promotions</div><div class="fw-row-value">Activate relevant audiences</div></div>
+        <div class="fw-row"><div class="fw-row-label">Events</div><div class="fw-row-value">Prime Day + Q4 event prep</div></div>
+      </div>
+
+      <div class="fw-card">
+        <div class="fw-card-title">Peak Season</div>
+        <div class="fw-card-timing">Aug – Dec</div>
+        <div class="fw-row"><div class="fw-row-label">Inventory</div><div class="fw-row-value">Protect Hero/Growth availability</div></div>
+        <div class="fw-row"><div class="fw-row-label">PPC / Search</div><div class="fw-row-value">Scale proven branded &amp; non-branded opportunities</div></div>
+        <div class="fw-row"><div class="fw-row-label">Content</div><div class="fw-row-value">Continue next priority ASINs</div></div>
+        <div class="fw-row"><div class="fw-row-label">Creators</div><div class="fw-row-value">Activate/scale if approved</div></div>
+        <div class="fw-row"><div class="fw-row-label">Brand Tailored Promotions</div><div class="fw-row-value">Run &amp; scale where performance supports it</div></div>
+        <div class="fw-row"><div class="fw-row-label">Events</div><div class="fw-row-value">Prime Big Deal Days + BFCM</div></div>
+      </div>
+
+      <div class="fw-card">
+        <div class="fw-card-title">Post-Season</div>
+        <div class="fw-card-timing">Jan</div>
+        <div class="fw-row"><div class="fw-row-label">Inventory</div><div class="fw-row-value">Review inventory &amp; next-season needs</div></div>
+        <div class="fw-row"><div class="fw-row-label">PPC / Search</div><div class="fw-row-value">Reduce with seasonal search volume</div></div>
+        <div class="fw-row"><div class="fw-row-label">Content</div><div class="fw-row-value">Review performance &amp; next optimization wave</div></div>
+        <div class="fw-row"><div class="fw-row-label">Creators</div><div class="fw-row-value">Review results</div></div>
+        <div class="fw-row"><div class="fw-row-label">Brand Tailored Promotions</div><div class="fw-row-value">Reduce/pause</div></div>
+        <div class="fw-row"><div class="fw-row-label">Events</div><div class="fw-row-value">Review results &amp; learnings</div></div>
+      </div>
+
+    </div>
+
+    <div id="comments-s02"></div>
+  </div>
+</div>
+
+<!-- S03 — GROWTH AREA 1: MAXIMIZE PEAK-SEASON DEMAND CAPTURE -->
+<div class="section" id="s03">
+  <div class="content">
+    <div class="section-header"><span class="section-title"><span style="color:var(--red)">Growth Area 1:</span> Maximize Peak-Season Demand Capture</span></div>
+
+    <p>Tink's search and sales activity builds significantly through Q3 and Q4. The priority is to enter peak with the right products, inventory, offers, and acquisition activity.</p>
+
+    <div class="sub-heading">Catalog Prioritization</div>
+    <p>The #69 Doe-in-Rut range remains the hero, while newer products including Peak30 and Scrape products are showing meaningful traction.</p>
+    <div class="red-label">Recommendations</div>
+    <ul class="bullet-list">
+      <li>Create Hero / Growth / Maintain / Transition ASIN classification.</li>
+      <li>Prioritize inventory, PPC, content, and video based on classification.</li>
+      <li>Protect Hero and Growth inventory throughout the peak.</li>
+      <li>Continue identifying emerging Growth ASINs based on search and sales performance.</li>
+    </ul>
+
+    <div class="sub-heading">Featured Offer</div>
+    <p>Some Featured Offer variability is expected due to Tink's broader off-Amazon wholesale distribution and should not be treated as a catalog-wide issue.</p>
+    <div class="red-label">Recommendations</div>
+    <ul class="bullet-list">
+      <li>Monitor Featured Offer across priority ASINs, especially during peak.</li>
+      <li>Investigate material or unexpected changes that could limit sales or advertising.</li>
+      <li>Consider Featured Offer status when deciding where to scale traffic.</li>
+    </ul>
+
+    <div class="sub-heading">Brand Tailored Promotions</div>
+    <ul class="bullet-list">
+      <li>Activate ahead of hunting season and run throughout the peak.</li>
+      <li>Scale where performance supports continued investment.</li>
+    </ul>
+
+    <div class="sub-heading">Creator Connections</div>
+    <ul class="bullet-list">
+      <li>Evaluate Creator Connections based on profitability before activation.</li>
+      <li>If approved, focus activity around peak season and priority products.</li>
+      <li>Pause during the off-season.</li>
+    </ul>
+
+    <div class="sub-heading">Amazon Events</div>
+    <p>Prime Big Deal Days and Black Friday/Cyber Monday fall within Tink's strongest selling period.</p>
+    <div class="red-label">Recommendations</div>
+    <ul class="bullet-list">
+      <li>Confirm event participation and offer strategy.</li>
+      <li>Prioritize Hero/Growth products based on eligibility, inventory, and profitability.</li>
+      <li>Align PPC and inventory planning with event activity.</li>
+      <li>Review event performance to inform the next seasonal cycle.</li>
+    </ul>
+
+    <div id="comments-s03"></div>
+  </div>
+</div>
+
+<!-- S04 — GROWTH AREA 2: GROW HIGH-INTENT NON-BRANDED SEARCH SHARE -->
+<div class="section" id="s04">
+  <div class="content">
+    <div class="section-header"><span class="section-title"><span style="color:var(--red)">Growth Area 2:</span> Grow High-Intent Non-Branded Search Share</span></div>
+
+    <p>Tink's already has strong branded recognition and established relevance across high-intent non-branded searches, including:</p>
+    <div class="term-highlight">
+      <div class="term-highlight-tags">
+        <span class="term-tag">doe estrus for hunting</span>
+        <span class="term-tag">doe urine for hunting</span>
+        <span class="term-tag">deer scent</span>
+        <span class="term-tag">deer lure</span>
+        <span class="term-tag">mock scrape scent</span>
+        <span class="term-tag">deer scrape scent</span>
+      </div>
+    </div>
+    <p>The opportunity is to reach shoppers earlier, before they have selected a brand.</p>
+
+    <div class="red-label">Recommendations</div>
+    <ul class="bullet-list">
+      <li>Protect Tink's branded search position.</li>
+      <li>Prioritize high-intent non-branded searches where Tink's already demonstrates relevance.</li>
+      <li>Build position ahead of peak and scale as seasonal search volume increases.</li>
+      <li>Align SEO and PPC around the same priority search opportunities.</li>
+      <li>Develop additional search opportunities around Scrapes and newer products.</li>
+      <li>Prioritize proven high-intent searches before expanding into broader generic terms.</li>
+    </ul>
+
+    <div class="sub-heading">Advertising Strategy</div>
+    <p>Advertising follows the same seasonal logic as the rest of the Tink's plan: build search position ahead of peak, scale proven branded and non-branded opportunities through the strongest demand window, and reduce investment as search volume declines in January. Ads and SEO are aligned around the same priority searches so that paid and organic reinforce one another rather than compete.</p>
+    <p>Today, the majority of Tink's advertising results are being driven by automatic campaigns, with only a light layer of deliberate keyword targeting on top. This has captured demand efficiently, but it leaves the account under-prepared to lead into peak. The priority is to move from an automation-led setup to a deliberate structure organized around the Hero / Growth / Maintain / Transition classification, so investment concentrates behind the products and searches that matter most.</p>
+
+    <div class="red-label">Recommendations</div>
+    <ul class="bullet-list">
+      <li>Protect branded search. Establish dedicated branded campaigns to defend high-intent Tink's searches (#69, Doe-in-Rut, #1 Doe-P, Trophy Buck, Peak30) and hold top-of-search position against competitors bidding on our name. This is efficient, high-converting demand and should not be left to automatic campaigns.</li>
+      <li>Build a discovery-to-performance pipeline. Use automatic and broad campaigns as a controlled discovery layer to surface new converting searches, then promote proven terms into dedicated exact-match campaigns where bids and budgets can be managed directly. Feed non-converting terms back as negatives so spend concentrates on what works.</li>
+      <li>Grow high-intent non-branded position ahead of peak. Prioritize the non-branded searches where Tink's already demonstrates relevance; doe estrus for hunting, doe urine for hunting, deer scent, deer lure, mock scrape scent, deer scrape scent - building rank before demand peaks rather than during it.</li>
+      <li>Tier investment to catalog classification. Concentrate budget behind Hero and Growth ASINs (the #69 range, Peak30, and Scrape products), with lighter maintenance spend on Maintain ASINs and minimal investment behind Transition products.</li>
+      <li>Develop the emerging lines deliberately. Give Scrape products and other newer items their own targeted support so they build search position as their category demand grows, rather than relying on brand-wide automatic coverage.</li>
+      <li>Capture competitor demand. Establish deliberate targeting against shoppers searching competing scent brands (Wildlife Research, Code Blue, Black Widow, ConQuest, Buck Bomb), where Tink's is already converting incidental traffic today.</li>
+      <li>Scale into events. Align advertising with Prime Big Deal Days and Black Friday/Cyber Monday, increasing investment behind Hero/Growth products during these high-demand windows.</li>
+    </ul>
+
+    <p>Advertising will be managed to Tink's efficiency guardrails, with investment scaled up as seasonal demand and search volume increase, and reduced as the season winds down.</p>
+
+    <div id="comments-s04"></div>
+  </div>
+</div>
+
+<!-- S05 — GROWTH AREA 3: STRENGTHEN PRODUCT EDUCATION & GUIDED SHOPPING -->
+<div class="section" id="s05">
+  <div class="content">
+    <div class="section-header"><span class="section-title"><span style="color:var(--red)">Growth Area 3:</span> Strengthen Product Education &amp; Guided Shopping</span></div>
+
+    <p>Tink's has a broad catalog spanning different scent types, formats, and applications. The Amazon experience should make it easier for shoppers to understand what to use, when to use it, and which product is right for them.</p>
+
+    <div class="sub-heading">Main Images &amp; Priority Listings</div>
+    <p>Main Image optimization is a priority across the catalog, beginning with Hero and Growth products.</p>
+    <div class="red-label">Recommendations</div>
+    <ul class="bullet-list">
+      <li>Optimize and test Main Images across Hero/Growth ASINs to improve search-result recognition and click-through rate.</li>
+      <li>Optimize priority listings around the same high-intent non-branded searches identified through Search Query Performance.</li>
+      <li>Continue Main Image and listing optimization across the next priority ASINs.</li>
+    </ul>
+
+    <div class="sub-heading">A+ Content</div>
+    <p>Several key Tink's products are currently missing A+.</p>
+    <div class="red-label">Recommendations</div>
+    <ul class="bullet-list">
+      <li>Develop A+ across Hero and Growth products.</li>
+      <li>Strengthen product education, usage guidance, and differentiation.</li>
+      <li>Cross-sell complementary products and formats.</li>
+    </ul>
+
+    <div class="sub-heading">Brand Story</div>
+    <p>Tink's currently lacks a consistent Brand Story across the catalog.</p>
+    <div class="red-label">Recommendations</div>
+    <ul class="bullet-list">
+      <li>Launch an optimized Brand Story across the catalog.</li>
+      <li>Reinforce Tink's history and authority within the category.</li>
+      <li>Introduce shoppers to the broader Tink's product range.</li>
+      <li>Strengthen cross-product discovery.</li>
+    </ul>
+
+    <div class="sub-heading">Store</div>
+    <p>The existing Tink's Store already provides solid category navigation. The opportunity is to strengthen guided shopping rather than rebuild it.</p>
+    <div class="red-label">Recommendations</div>
+    <ul class="bullet-list">
+      <li>Add stronger product-selection guidance.</li>
+      <li>Help shoppers navigate by scent type, hunting situation, and application.</li>
+      <li>Strengthen cross-selling and product-family discovery.</li>
+      <li>Increase visibility for newer products alongside the established #69 line.</li>
+    </ul>
+
+    <div class="sub-heading">Video</div>
+    <ul class="bullet-list">
+      <li>Develop video based on Hero/Growth priorities.</li>
+      <li>Focus on product use, application, product selection, and key differences between products.</li>
+    </ul>
+
+    <div class="sub-heading">DEFEND by Tink's Catalog Structure</div>
+    <p>The Coyote Urine ASINs B0GGTK9QDV and B0GGTKPP4F are currently listed under Dead Down Wind but are featured within the Tink's Store.</p>
+    <div class="red-label">Recommendations</div>
+    <ul class="bullet-list">
+      <li>Confirm whether the intended brand is Tink's or Defend.</li>
+      <li>Determine the correct long-term Amazon structure before further investment.</li>
+      <li>If Dead Down Wind attribution is incorrect, evaluate relaunching under the correct brand while the listings still have limited sales and review history.</li>
+    </ul>
+
+    <div id="comments-s05"></div>
+  </div>
+</div>
+
+<!-- S06 — CREATIVE DIRECTION -->
+<div class="section" id="s06">
+  <div class="content">
+    <div class="section-header"><span class="section-title">Creative Direction</span></div>
+
+    <p>Tink's has genuine heritage (since 1972, "America's #1 Buck Lure") and a differentiated trust asset most competitors lack — RT-QuIC CWD testing and RHSA Deer Protection Program certification. The catalog is also complex: multiple scent types, dispersal formats, and seasonal timing rules. The creative direction below is built around one thesis: present Tink's as a system — the right scent, in the right format, at the right time — rather than a shelf of individual products. This directly supports the Growth Area 3 goal of easier discovery and understanding, and reinforces Growth Area 2 by giving non-branded, pre-purchase shoppers a reason to trust and choose Tink's on sight.</p>
+
+    <div class="sub-heading">Visual System</div>
+    <p>Carry the existing brand system onto Amazon rather than reinventing it for the channel.</p>
+    <div class="red-label">Recommendations</div>
+    <p>Color-code by product line across all Amazon creative — Radiant Gold (Peak30/Natural Estrous), Pantone 186 Red (#69 Doe-in-Rut), Toyo Blue (#1 Doe-P), Charcoal Grey (Trophy Buck) — so repeat shoppers learn to navigate by color, not just text.</p>
+    <p>Use Eurostyle Black/Bold for all callouts; avoid rugged or distressed display fonts that work against the brand's modernization goal.</p>
+    <p>Surface the CWD-Tested/RHSA badge early in the shopper journey (Main Image or Image 2), not buried in A+.</p>
+
+    <div class="sub-heading">Main Images (supports Hero/Growth prioritization)</div>
+    <div class="red-label">Recommendations</div>
+    <p>Use product-line color as the background/accent so Hero ASINs are visually distinct in search results.</p>
+    <p>Feature one hero claim per ASIN (CWD-Tested badge or "America's #1 Buck Lure") rather than stacking multiple claims — confirm substantiation before locking any performance claim.</p>
+
+    <div class="sub-heading">Secondary Images — Product Education Sequence</div>
+    <p>Directly answers the shopper uncertainty flagged in Growth Area 3 (what to use, when, and how).</p>
+    <div class="red-label">Recommendations</div>
+    <div class="flow">
+      <div class="flow-tile"><div class="flow-tile-title">1. Timing Map</div><div class="flow-tile-body">Pre-rut / rut / post-rut mapped to product</div></div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-tile"><div class="flow-tile-title">2. Format/Application Demo</div></div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-tile"><div class="flow-tile-title">3. Trust/Certification Callout</div></div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-tile"><div class="flow-tile-title">4. Natural vs. Synthetic Explainer</div></div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-tile"><div class="flow-tile-title">5. Lifestyle/In-Field Shot</div></div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-tile"><div class="flow-tile-title">6. Cross-Sell/Bundle Callout</div></div>
+    </div>
+    <p>Sequence lifestyle imagery last, after the education content, so it reinforces proof of use rather than opening on mood alone.</p>
+    <p>Apply this sequence first to Hero/Growth ASINs, then roll to next-priority ASINs per the existing Main Image roadmap.</p>
+
+    <div class="sub-heading">A+ Content</div>
+    <div class="red-label">Recommendations</div>
+    <p>Open with a credibility bar: "Since 1972 / America's #1 Buck Lure / CWD-Tested &amp; RHSA Certified."</p>
+    <p>Include a dedicated module explaining the Natural vs. Synthetic distinction — a recurring source of shopper confusion per FAQ data.</p>
+    <p>Build a scent-strategy/timing module that mirrors the secondary image sequence, reinforcing the same "system" logic.</p>
+    <p>Use a routine-builder cross-sell module (scent + dispersal method + cover scent) to directly support the "cross-sell complementary products and formats" goal already in the plan.</p>
+
+    <div class="sub-heading">Brand Story</div>
+    <div class="red-label">Recommendations</div>
+    <p>Lead with 1972 heritage and decades of deer-behavior expertise — Tink's clearest differentiator versus Wildlife Research, Code Blue, Black Widow, and Buck Bomb.</p>
+    <p>Follow with the modernization/innovation angle (Scrape Products, Nose Candy) to show the brand isn't resting on legacy alone.</p>
+    <div class="callout"><p>Flag to client: no founder story or origin anecdote was provided in onboarding — a specific "how Tink's started" narrative would materially strengthen this module.</p></div>
+
+    <div class="sub-heading">Store</div>
+    <div class="red-label">Recommendations</div>
+    <p>Layer scent-type/hunting-situation/application navigation on top of the existing category structure, rather than rebuilding it — consistent with the "strengthen guided shopping, don't rebuild" direction already set.</p>
+    <p>Add a "Build Your Kit" cross-sell path (scent + dispersal + cover scent) to support AOV and routine-building.</p>
+    <p>Use the color-coded product-line system on Store navigation tiles so it reinforces the same visual logic as the listings.</p>
+
+    <div class="sub-heading">Photography &amp; Mood Direction</div>
+    <div class="red-label">Recommendations</div>
+    <p>Tone: confident, credible, science-meets-tradition — trusted field expert, not tactical or rustic camo-brand energy.</p>
+    <p>Color grading: warm, natural autumn woodland tones (ties to the Radiant Gold brand color); avoid desaturated/gritty grading competitors already use.</p>
+    <p>Prioritize hands-on-product moments (applying/using scent) over posed hunter-with-bottle shots.</p>
+    <p>Avoid staged trophy-buck kill shots (Amazon content risk) and generic stock-hunter imagery.</p>
+
+    <div class="sub-heading">Compliance Flags for Client Sign-Off</div>
+    <ul class="bullet-list">
+      <li>Any specific performance/effectiveness claims (e.g., "brings deer in," "#1 buck lure" used as a claim vs. product name).</li>
+      <li>CWD/RHSA badge usage rights and required disclaimer language.</li>
+      <li>Confirm no imagery or copy references glands, per existing prohibited-language guidance.</li>
+    </ul>
+
+    <div class="callout"><p>For more detailed creative strategy, visit this link: <a href="https://www.figma.com/design/9CFj2NEVy8X6SfgnBx4R2K/Tink-s---Client-Reviews?node-id=1-5&t=KWMVCmFl0MZNN29w-1" target="_blank" style="color:var(--white);font-weight:700;text-decoration:underline;text-underline-offset:3px;">Figma Link</a></p></div>
+
+    <div id="comments-s06"></div>
+  </div>
+</div>
+
+<!-- S07 — ROADMAP TRACKER -->
+<div class="section" id="s07">
+  <div class="content">
+    <div class="section-header"><span class="section-title">Roadmap &amp; Tracker</span></div>
+
+    <p>Track progress against every action in the roadmap. Update a status as work moves along, edit an action's wording directly, or add a new action under any phase.</p>
+
+    <div id="trackerRoot"></div>
+
+    <div id="comments-s07"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div style="text-align:center;width:100%;">
+    <div style="font-family:'Gabarito',sans-serif;font-size:clamp(1.8rem,5vw,3rem);font-weight:900;text-transform:none;letter-spacing:.01em;color:var(--red);margin-bottom:.6rem;">Brands built to be remembered.</div>
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.78rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--grey);">FTR &nbsp;·&nbsp; Amazon &amp; Walmart Growth</div>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu(){
+    document.getElementById('navMobile').classList.toggle('open');
+  }
+
+  // Progress bar
+  window.addEventListener('scroll',()=>{
+    const d=document.documentElement;
+    const pct=(d.scrollTop/(d.scrollHeight-d.clientHeight));
+    document.getElementById('progress').style.transform='scaleX('+pct+')';
+  });
+
+  // Section fade-in
+  const sections=document.querySelectorAll('.section');
+  const sectionObs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting) e.target.classList.add('visible');});
+  },{threshold:0});
+  sections.forEach(s=>sectionObs.observe(s));
+  setTimeout(()=>{ sections.forEach(s=>s.classList.add('visible')); },1500);
+
+  /* ============================================================
+     SUPABASE — shared Amazon Department project
+     ============================================================ */
+  const SUPABASE_URL='https://zbcqdcwibbuyfmytfngn.supabase.co';
+  const SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiY3FkY3dpYmJ1eWZteXRmbmduIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIyOTgyNTEsImV4cCI6MjA5Nzg3NDI1MX0.gXJna_dG08OVNyQy6VyakhJ7ays93ibLlWCDrS6W1RM';
+  const DOC_PREFIX='tinks-amazon-growth-2026';
+
+  const SECTIONS={
+    's01':'Overview',
+    's02':'Seasonal Amazon Framework',
+    's03':'Growth Area 1: Maximize Peak-Season Demand Capture',
+    's04':'Growth Area 2: Grow High-Intent Non-Branded Search Share',
+    's05':'Growth Area 3: Strengthen Product Education & Guided Shopping',
+    's06':'Creative Direction',
+    's07':'Roadmap & Tracker'
+  };
+
+  async function fetchComments(){
+    try{
+      const ids=Object.keys(SECTIONS).map(s=>`${DOC_PREFIX}-${s}`);
+      const r=await fetch(
+        `${SUPABASE_URL}/rest/v1/comments?section_id=in.(${ids.map(s=>`"${s}"`).join(',')})&order=created_at.asc`,
+        {headers:{'apikey':SUPABASE_KEY,'Authorization':`Bearer ${SUPABASE_KEY}`}}
+      );
+      return await r.json();
+    }catch(e){return[];}
+  }
+
+  async function saveComment(sectionId,name,body){
+    const r=await fetch(`${SUPABASE_URL}/rest/v1/comments`,{
+      method:'POST',
+      headers:{
+        'apikey':SUPABASE_KEY,
+        'Authorization':`Bearer ${SUPABASE_KEY}`,
+        'Content-Type':'application/json',
+        'Prefer':'return=representation'
+      },
+      body:JSON.stringify({section_id:`${DOC_PREFIX}-${sectionId}`,name:name||'Anonymous',body})
+    });
+    if(!r.ok) throw new Error('Failed to save');
+    return await fetchComments();
+  }
+
+  function formatDate(iso){
+    const d=new Date(iso);
+    return d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})
+      +' · '+d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+  }
+
+  function escHtml(s){
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function renderSection(id,comments){
+    const container=document.getElementById('comments-'+id);
+    if(!container) return;
+    const fullId=`${DOC_PREFIX}-${id}`;
+    const sectionComments=comments.filter(c=>c.section_id===fullId);
+    const count=sectionComments.length;
+    container.innerHTML=`
+      <button class="section-comment-btn ${count>0?'has-comments':''}" onclick="togglePanel('${id}')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        ${count>0?count+' comment'+(count>1?'s':''):'Add comment'}
+        <span class="cb-count">${count}</span>
+      </button>
+      <div class="comment-panel ${count>0?'open':''}" id="panel-${id}">
+        <div class="comment-panel-inner">
+          <div class="comment-thread" id="thread-${id}">
+            ${count===0?'<p class="no-comments">No comments yet on this section.</p>':
+              sectionComments.map(c=>`
+                <div class="comment-item">
+                  <div class="comment-item-header">
+                    <span class="comment-item-name">${escHtml(c.name||'Anonymous')}</span>
+                    <span class="comment-item-time">${formatDate(c.created_at)}</span>
+                  </div>
+                  <p class="comment-item-text">${escHtml(c.body)}</p>
+                </div>`).join('')}
+          </div>
+          <div class="comment-form">
+            <textarea id="txt-${id}" rows="2" placeholder="Write a comment or question on this section..."></textarea>
+            <div class="comment-form-row">
+              <input type="text" id="name-${id}" placeholder="Your name (optional)">
+              <button class="comment-post-btn" id="btn-${id}" onclick="postComment('${id}')">Post</button>
+            </div>
+            <div class="comment-status" id="status-${id}"></div>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  function togglePanel(id){
+    const panel=document.getElementById('panel-'+id);
+    panel.classList.toggle('open');
+    if(panel.classList.contains('open')){
+      setTimeout(()=>{const t=document.getElementById('txt-'+id);if(t)t.focus();},50);
+    }
+  }
+
+  async function postComment(id){
+    const txt=document.getElementById('txt-'+id);
+    const nameEl=document.getElementById('name-'+id);
+    const btn=document.getElementById('btn-'+id);
+    const status=document.getElementById('status-'+id);
+    const body=txt.value.trim();
+    if(!body){status.textContent='Please write something first.';status.style.color='#cc1100';return;}
+    btn.disabled=true;status.textContent='Posting...';status.style.color='#8a8a8a';
+    try{
+      const comments=await saveComment(id,nameEl.value.trim(),body);
+      txt.value='';nameEl.value='';
+      status.textContent='Posted ✓';status.style.color='#2a7a2a';
+      setTimeout(()=>{status.textContent='';},3000);
+      Object.keys(SECTIONS).forEach(sid=>renderSection(sid,comments));
+      setTimeout(()=>{const p=document.getElementById('panel-'+id);if(p)p.classList.add('open');},50);
+    }catch(e){
+      status.textContent='Failed to post. Please try again.';status.style.color='#cc1100';
+    }
+    btn.disabled=false;
+  }
+
+  async function initComments(){
+    const comments=await fetchComments();
+    Object.keys(SECTIONS).forEach(id=>renderSection(id,comments));
+    setTimeout(()=>{
+      Object.keys(SECTIONS).forEach(id=>{
+        const panel=document.getElementById('panel-'+id);
+        const hasComments=comments.some(c=>c.section_id===`${DOC_PREFIX}-${id}`);
+        if(panel&&hasComments) panel.classList.add('open');
+      });
+    },200);
+  }
+
+  /* ============================================================
+     TRACKER — event-sourced (append-only) so every team member's
+     edits sync through the same shared Supabase "comments" table,
+     using a distinct key pattern (~) so it never collides with the
+     dash-based section comment keys above.
+
+     Supported ops per event:
+       add    { action, group }   — seeds/creates an item
+       status { status }          — Pending / In Progress / Complete
+       edit   { action }          — rewrites the action's text
+       comment{ text }            — appends a threaded comment
+       delete {}                  — soft-removes the item
+     ============================================================ */
+  const TRACKER_LIKE = `${DOC_PREFIX}~*`;
+
+  async function fetchTrackerEvents(){
+    try{
+      const r = await fetch(`${SUPABASE_URL}/rest/v1/comments?section_id=like.${TRACKER_LIKE}&order=created_at.asc`,
+        { headers:{ apikey:SUPABASE_KEY, Authorization:`Bearer ${SUPABASE_KEY}` } });
+      if(!r.ok) throw new Error('fetch failed');
+      return await r.json();
+    }catch(e){ console.error(e); return null; }
+  }
+
+  async function pushTrackerEvent(phaseKey, itemId, author, payload){
+    const section_id = `${DOC_PREFIX}~${phaseKey}~${itemId}`;
+    const r = await fetch(`${SUPABASE_URL}/rest/v1/comments`, {
+      method:'POST',
+      headers:{ apikey:SUPABASE_KEY, Authorization:`Bearer ${SUPABASE_KEY}`,
+                'Content-Type':'application/json', 'Prefer':'return=representation' },
+      body: JSON.stringify({ section_id, name: author || 'Team', body: JSON.stringify(payload) })
+    });
+    if(!r.ok) throw new Error('save failed');
+    return await r.json();
+  }
+
+  function buildPhaseState(events, phaseKey, seedItems){
+    const items = {};
+    seedItems.forEach(s => { items[s.id] = { id:s.id, action:s.action, group:s.group||null, status:s.status||'Pending', deleted:false, comments:[] }; });
+
+    (events||[]).forEach(ev => {
+      const parts = ev.section_id.split('~');
+      if(parts[1] !== phaseKey) return;
+      const itemId = parts[2];
+      let payload; try{ payload = JSON.parse(ev.body); }catch(e){ return; }
+      if(!items[itemId]) items[itemId] = { id:itemId, action:'', group:null, status:'Pending', deleted:false, comments:[] };
+      if(payload.op === 'add'){
+        items[itemId].action = payload.action;
+        items[itemId].group = payload.group || null;
+        items[itemId].status = 'Pending';
+        items[itemId].deleted = false;
+      } else if(payload.op === 'status'){
+        items[itemId].status = payload.status;
+      } else if(payload.op === 'edit'){
+        items[itemId].action = payload.action;
+      } else if(payload.op === 'delete'){
+        items[itemId].deleted = true;
+      } else if(payload.op === 'comment'){
+        items[itemId].comments.push({ name: ev.name, text: payload.text, created_at: ev.created_at });
+      }
+    });
+    return Object.values(items).filter(i => !i.deleted);
+  }
+
+  function statusClass(status){
+    return 'status-' + status.toLowerCase().replace(/\s+/g,'-');
+  }
+
+  /* ============================================================
+     PHASE CONFIG — seeded from the Roadmap in the strategy
+     document. New items / edits added by the team append as
+     event rows, they don't modify this seed list.
+     ============================================================ */
+  const PHASES = [
+    { key:'ph1', num:'1', label:'First 30 Days', sub:'Prepare for Peak',
+      seed:[
+        {id:'p1i1', action:'Create Hero / Growth / Maintain / Transition classification'},
+        {id:'p1i2', action:'Review Featured Offer across priority ASINs and flag material issues'},
+        {id:'p1i3', action:'Begin Hero ASIN Main Image and listing optimization'},
+        {id:'p1i4', action:"Create Brand Story optimization plan"},
+        {id:'p1i5', action:'Activate Brand Tailored Promotions'},
+        {id:'p1i6', action:'Evaluate Creator Connections profitability'},
+        {id:'p1i7', action:"Confirm intended brand structure for DEFEND by Tink's Coyote Urine ASINs"},
+        {id:'p1i8', action:'Strengthen PPC/search position ahead of peak'},
+        {id:'p1i9', action:'Prepare Prime Big Deal Days offers and participating products'},
+      ]},
+    { key:'ph2', num:'2', label:'Days 31–60', sub:'Scale Peak Acquisition',
+      seed:[
+        {id:'p2i1', action:'Scale priority branded and non-branded search opportunities'},
+        {id:'p2i2', action:'Monitor Featured Offer and inventory across priority ASINs'},
+        {id:'p2i3', action:'Continue Hero/Growth listing optimization'},
+        {id:'p2i4', action:'Launch optimized Brand Story'},
+        {id:'p2i5', action:'Launch initial videos'},
+        {id:'p2i6', action:'Create Store optimization plan'},
+        {id:'p2i7', action:'Scale Brand Tailored Promotions where performance supports it'},
+        {id:'p2i8', action:'Activate Creator Connections if approved'},
+        {id:'p2i9', action:'Execute Prime Big Deal Days readiness'},
+        {id:'p2i10', action:'Prepare Black Friday/Cyber Monday offers and participating products'},
+      ]},
+    { key:'ph3', num:'3', label:'Days 61–90', sub:'Maximize Peak Season',
+      seed:[
+        {id:'p3i1', action:'Scale highest-performing PPC/search opportunities'},
+        {id:'p3i2', action:'Monitor Featured Offer and protect Hero ASIN inventory'},
+        {id:'p3i3', action:'Continue listing optimization to the next priority ASINs'},
+        {id:'p3i4', action:'Launch optimised store'},
+        {id:'p3i5', action:'Scale Brand Tailored Promotions where supported'},
+        {id:'p3i6', action:'Continue/scale Creator Connections if approved and profitable'},
+        {id:'p3i7', action:'Execute Black Friday/Cyber Monday readiness'},
+        {id:'p3i8', action:'Monitor priority ASIN conversion and search performance'},
+        {id:'p3i9', action:'Capture learnings for the next seasonal cycle'},
+      ]},
+  ];
+
+  const STATUS_OPTIONS = ['Pending','In Progress','Complete'];
+  let ALL_TRACKER_EVENTS = [];
+
+  function renderTracker(){
+    const root = document.getElementById('trackerRoot');
+    root.innerHTML = '';
+    let total = 0, complete = 0;
+
+    const phaseStates = PHASES.map(phase => {
+      const items = buildPhaseState(ALL_TRACKER_EVENTS, phase.key, phase.seed);
+      total += items.length;
+      complete += items.filter(i => i.status === 'Complete').length;
+      return { phase, items };
+    });
+
+    const overallPct = total ? Math.round((complete/total)*100) : 0;
+    const progressWrap = document.createElement('div');
+    progressWrap.className = 'tk-progress-wrap';
+    progressWrap.innerHTML = `
+      <div class="tk-progress-stat">${complete}<span>/${total}</span></div>
+      <div class="tk-progress-track"><div class="tk-progress-fill" style="width:${overallPct}%"></div></div>
+      <div class="tk-progress-lbl">${overallPct}% Complete</div>`;
+    root.appendChild(progressWrap);
+
+    phaseStates.forEach(({phase, items}) => {
+      const wrap = document.createElement('div');
+      wrap.className = 'tk-phase';
+      wrap.innerHTML = `
+        <div class="tk-phase-hdr">
+          <div class="tk-phase-rule"></div>
+          <div class="tk-phase-pill"><span class="tk-phase-lbl">${escHtml(phase.label)}</span></div>
+          <div class="tk-phase-rule"></div>
+        </div>
+        <div class="tk-phase-sub" style="text-align:center;">${escHtml(phase.sub)}</div>
+        <div class="tk-body-mobile" data-phase="${phase.key}"></div>
+        <div class="tk-table-wrap" data-phase="${phase.key}"></div>
+        <button class="tk-add-toggle" data-phase="${phase.key}" data-role="add-toggle">+ Add Action to This Phase</button>
+        <div class="tk-add-form" data-phase="${phase.key}" style="display:none;">
+          <input type="text" placeholder="New action…" data-role="add-input">
+          <button class="tk-add-btn" data-role="add-submit">Add</button>
+        </div>
+      `;
+      root.appendChild(wrap);
+
+      const body = wrap.querySelector('.tk-body-mobile');
+      items.forEach(i => body.appendChild(renderTrackerCard(phase.key, i)));
+
+      const tableWrap = wrap.querySelector('.tk-table-wrap');
+      tableWrap.appendChild(renderTrackerTable(phase.key, items));
+
+      wrap.querySelector('[data-role="add-toggle"]').addEventListener('click', () => {
+        const form = wrap.querySelector('.tk-add-form');
+        form.style.display = form.style.display === 'none' ? 'flex' : 'none';
+        if (form.style.display === 'flex') form.querySelector('input').focus();
+      });
+      wrap.querySelector('[data-role="add-submit"]').addEventListener('click', async () => {
+        const input = wrap.querySelector('[data-role="add-input"]');
+        const val = input.value.trim();
+        if (!val) return;
+        const newId = 'new-' + Date.now() + '-' + Math.random().toString(36).slice(2,7);
+        const btn = wrap.querySelector('[data-role="add-submit"]');
+        btn.disabled = true; btn.textContent = 'Adding…';
+        try{
+          await pushTrackerEvent(phase.key, newId, 'Team', { op:'add', action: val, group:null });
+          input.value = '';
+          wrap.querySelector('.tk-add-form').style.display = 'none';
+          await reloadTracker();
+        }catch(e){
+          alert('Could not add action — check your connection and try again.');
+        }
+        btn.disabled = false; btn.textContent = 'Add';
+      });
+    });
+  }
+
+  /* ---------- shared comment panel markup + wiring ---------- */
+  function commentPanelBodyHTML(domId, item){
+    const commentCount = (item.comments || []).length;
+    const thread = commentCount === 0
+      ? '<p class="tk-no-comments">No comments yet on this action.</p>'
+      : item.comments.map(c => `
+          <div class="tk-comment-item">
+            <div class="tk-comment-item-header">
+              <span class="tk-comment-item-name">${escHtml(c.name||'Anonymous')}</span>
+              <span class="tk-comment-item-time">${formatDate(c.created_at)}</span>
+            </div>
+            <p class="tk-comment-item-text">${escHtml(c.text)}</p>
+          </div>`).join('');
+    return `
+      <div class="tk-comment-thread" id="tk-thread-${domId}">${thread}</div>
+      <div class="tk-comment-form">
+        <textarea id="tk-txt-${domId}" rows="2" placeholder="Add a comment on this action..."></textarea>
+        <div class="tk-comment-form-row">
+          <input type="text" id="tk-name-${domId}" placeholder="Your name (optional)">
+          <button class="tk-comment-post-btn" id="tk-btn-${domId}" data-role="comment-post">Post</button>
+        </div>
+        <div class="tk-comment-status" id="tk-status-msg-${domId}"></div>
+      </div>`;
+  }
+
+  function wireCommentForm(container, phaseKey, item, domId, reopenDomId){
+    container.querySelector('[data-role="comment-post"]').addEventListener('click', async () => {
+      const txt = document.getElementById(`tk-txt-${domId}`);
+      const nameEl = document.getElementById(`tk-name-${domId}`);
+      const btn = document.getElementById(`tk-btn-${domId}`);
+      const status = document.getElementById(`tk-status-msg-${domId}`);
+      const body = txt.value.trim();
+      if(!body){ status.textContent = 'Please write something first.'; status.style.color = '#cc1100'; return; }
+      btn.disabled = true; status.textContent = 'Posting...'; status.style.color = '#8a8a8a';
+      try{
+        await pushTrackerEvent(phaseKey, item.id, nameEl.value.trim() || 'Anonymous', { op:'comment', text: body });
+        await reloadTracker(reopenDomId);
+      }catch(e){
+        status.textContent = 'Failed to post. Please try again.'; status.style.color = '#cc1100';
+        btn.disabled = false;
+      }
+    });
+  }
+
+  /* ---------- shared edit-in-place wiring ---------- */
+  function editWrapHTML(domId, item){
+    return `
+      <div class="tk-edit-wrap" data-role="edit-wrap" id="tk-edit-${domId}">
+        <textarea class="tk-edit-textarea" data-role="edit-textarea">${escHtml(item.action)}</textarea>
+        <div class="tk-edit-actions">
+          <button class="tk-edit-save" data-role="edit-save">Save</button>
+          <button class="tk-edit-cancel" data-role="edit-cancel">Cancel</button>
+        </div>
+      </div>`;
+  }
+
+  function wireEditControls(container, phaseKey, item, domId, actionTextEl, reopenDomId){
+    const editToggle = container.querySelector('[data-role="edit-toggle"]');
+    const editWrap = container.querySelector('[data-role="edit-wrap"]');
+    const textarea = container.querySelector('[data-role="edit-textarea"]');
+    const saveBtn = container.querySelector('[data-role="edit-save"]');
+    const cancelBtn = container.querySelector('[data-role="edit-cancel"]');
+
+    editToggle.addEventListener('click', () => {
+      actionTextEl.classList.add('hidden');
+      editWrap.classList.add('open');
+      textarea.focus();
+      textarea.setSelectionRange(textarea.value.length, textarea.value.length);
+    });
+
+    cancelBtn.addEventListener('click', () => {
+      textarea.value = item.action;
+      editWrap.classList.remove('open');
+      actionTextEl.classList.remove('hidden');
+    });
+
+    saveBtn.addEventListener('click', async () => {
+      const newVal = textarea.value.trim();
+      if(!newVal) return;
+      saveBtn.disabled = true; saveBtn.textContent = 'Saving…';
+      try{
+        await pushTrackerEvent(phaseKey, item.id, 'Team', { op:'edit', action: newVal });
+        await reloadTracker(reopenDomId);
+      }catch(e){
+        alert('Could not save the edit — check your connection and try again.');
+        saveBtn.disabled = false; saveBtn.textContent = 'Save';
+      }
+    });
+  }
+
+  /* ---------- mobile card ---------- */
+  function renderTrackerCard(phaseKey, item){
+    const domId = `m-${phaseKey}-${item.id}`;
+    const commentCount = (item.comments || []).length;
+    const card = document.createElement('div');
+    card.className = 'tk-card';
+    card.innerHTML = `
+      <div class="tk-card-top">
+        <div class="tk-action-wrap">
+          <div class="tk-action" data-role="action-text">${escHtml(item.action)}</div>
+          ${editWrapHTML(domId, item)}
+        </div>
+        <div class="tk-card-controls">
+          <button class="tk-icon-btn" data-role="edit-toggle" title="Edit action">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </button>
+          <button class="tk-comment-btn ${commentCount>0?'has-comments':''}" data-role="comment-toggle" title="Comments">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Comment
+            ${commentCount>0?`<span class="tk-badge">${commentCount}</span>`:''}
+          </button>
+          <button class="tk-icon-btn" data-role="delete" title="Remove">✕</button>
+        </div>
+      </div>
+      <span class="tk-status-label">Status</span>
+      <select class="tk-status-select ${statusClass(item.status)}" data-role="status"></select>
+      <div class="tk-comment-panel" id="tk-panel-${domId}">${commentPanelBodyHTML(domId, item)}</div>`;
+
+    const actionTextEl = card.querySelector('[data-role="action-text"]');
+    wireEditControls(card, phaseKey, item, domId, actionTextEl, domId);
+
+    const select = card.querySelector('[data-role="status"]');
+    select.innerHTML = STATUS_OPTIONS.map(o => `<option value="${o}" ${o===item.status?'selected':''}>${o}</option>`).join('');
+    select.addEventListener('change', async (e) => {
+      const newStatus = e.target.value;
+      select.className = 'tk-status-select ' + statusClass(newStatus);
+      try{
+        await pushTrackerEvent(phaseKey, item.id, 'Team', { op:'status', status:newStatus });
+      }catch(err){ alert('Could not save status — check your connection.'); }
+      await reloadTracker();
+    });
+
+    card.querySelector('[data-role="delete"]').addEventListener('click', async () => {
+      if (!confirm('Remove this action from the tracker? This cannot be undone.')) return;
+      try{
+        await pushTrackerEvent(phaseKey, item.id, 'Team', { op:'delete' });
+        await reloadTracker();
+      }catch(e){ alert('Could not remove action — check your connection.'); }
+    });
+
+    card.querySelector('[data-role="comment-toggle"]').addEventListener('click', () => {
+      const panel = card.querySelector(`#tk-panel-${domId}`);
+      panel.classList.toggle('open');
+      if (panel.classList.contains('open')) {
+        setTimeout(() => { const t = document.getElementById(`tk-txt-${domId}`); if(t) t.focus(); }, 50);
+      }
+    });
+
+    wireCommentForm(card, phaseKey, item, domId, domId);
+    return card;
+  }
+
+  /* ---------- desktop table ---------- */
+  function renderTrackerTable(phaseKey, items){
+    const table = document.createElement('table');
+    table.className = 'tk-table';
+    table.innerHTML = `
+      <thead>
+        <tr>
+          <th>Action</th>
+          <th class="tk-th-center">Status</th>
+          <th class="tk-th-center">Edit</th>
+          <th class="tk-th-center">Comments</th>
+          <th class="tk-th-center"></th>
+        </tr>
+      </thead>
+      <tbody></tbody>`;
+    const tbody = table.querySelector('tbody');
+
+    items.forEach(item => {
+      const domId = `t-${phaseKey}-${item.id}`;
+      const commentCount = (item.comments || []).length;
+
+      const row = document.createElement('tr');
+      row.className = 'tk-row';
+      row.innerHTML = `
+        <td class="tk-td-action">
+          <div class="tk-action" data-role="action-text">${escHtml(item.action)}</div>
+          ${editWrapHTML(domId, item)}
+        </td>
+        <td class="tk-td-status"><select class="tk-status-select ${statusClass(item.status)}" data-role="status"></select></td>
+        <td class="tk-td-edit"><button class="tk-icon-btn" data-role="edit-toggle" title="Edit action">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        </button></td>
+        <td class="tk-td-comments">
+          <button class="tk-icon-btn ${commentCount>0?'has-comments':''}" data-role="comment-toggle" title="Comments">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            ${commentCount>0?`<span class="tk-badge">${commentCount}</span>`:''}
+          </button>
+        </td>
+        <td class="tk-td-delete"><button class="tk-icon-btn" data-role="delete" title="Remove">✕</button></td>`;
+
+      const commentRow = document.createElement('tr');
+      commentRow.className = 'tk-comment-row';
+      commentRow.id = `tk-panel-${domId}`;
+      commentRow.innerHTML = `<td colspan="5"><div class="tk-comment-row-inner">${commentPanelBodyHTML(domId, item)}</div></td>`;
+
+      const actionTextEl = row.querySelector('[data-role="action-text"]');
+      wireEditControls(row, phaseKey, item, domId, actionTextEl, domId);
+
+      const select = row.querySelector('[data-role="status"]');
+      select.innerHTML = STATUS_OPTIONS.map(o => `<option value="${o}" ${o===item.status?'selected':''}>${o}</option>`).join('');
+      select.addEventListener('change', async (e) => {
+        const newStatus = e.target.value;
+        select.className = 'tk-status-select ' + statusClass(newStatus);
+        try{
+          await pushTrackerEvent(phaseKey, item.id, 'Team', { op:'status', status:newStatus });
+        }catch(err){ alert('Could not save status — check your connection.'); }
+        await reloadTracker();
+      });
+
+      row.querySelector('[data-role="delete"]').addEventListener('click', async () => {
+        if (!confirm('Remove this action from the tracker? This cannot be undone.')) return;
+        try{
+          await pushTrackerEvent(phaseKey, item.id, 'Team', { op:'delete' });
+          await reloadTracker();
+        }catch(e){ alert('Could not remove action — check your connection.'); }
+      });
+
+      row.querySelector('[data-role="comment-toggle"]').addEventListener('click', () => {
+        commentRow.classList.toggle('open');
+        if (commentRow.classList.contains('open')) {
+          setTimeout(() => { const t = document.getElementById(`tk-txt-${domId}`); if(t) t.focus(); }, 50);
+        }
+      });
+
+      wireCommentForm(commentRow, phaseKey, item, domId, domId);
+
+      tbody.appendChild(row);
+      tbody.appendChild(commentRow);
+    });
+
+    return table;
+  }
+
+  async function reloadTracker(reopenDomId){
+    const events = await fetchTrackerEvents();
+    if (events !== null) ALL_TRACKER_EVENTS = events;
+    renderTracker();
+    if (reopenDomId){
+      const panel = document.getElementById('tk-panel-' + reopenDomId);
+      if (panel) panel.classList.add('open');
+    }
+  }
+
+  initComments();
+  reloadTracker();
+</script>
+</body>
+</html>
