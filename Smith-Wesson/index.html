@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Arcus Hunting / Smith & Wesson — Amazon Launch Strategy</title>
+<link rel="icon" href="favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800;900&family=Figtree:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--black:#181B1F;--red:#F67A1C;--red-dark:#c96214;--white:#F2F4F6;--grey:#8A9099;--light-grey:#2B2F36;--charcoal:#21252B;--off-white:#181B1F;--green:#3FCF7A;--amber:#E2A53C;--blue:#1273C8;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Figtree',sans-serif;background:var(--off-white);color:var(--white);overflow-x:hidden;}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--charcoal);border-bottom:1px solid var(--light-grey);height:60px;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;}
+  .nav-brand{font-family:'Gabarito',sans-serif;font-size:1.3rem;font-weight:800;color:var(--white);letter-spacing:.02em;white-space:nowrap;}
+  .nav-brand span{color:var(--red);}
+  .nav-links{display:flex;align-items:center;}
+  .nav-links a{padding:0 .7rem;line-height:60px;font-family:'IBM Plex Mono',monospace;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);text-decoration:none;transition:color .2s;white-space:nowrap;}
+  .nav-links a:hover{color:var(--red);}
+  .hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:4px;width:36px;height:36px;}
+  .hamburger span{display:block;width:22px;height:2px;background:var(--white);transition:all .3s;}
+
+  /* MOBILE NAV */
+  .nav-mobile{display:none;position:fixed;top:60px;left:0;right:0;z-index:99;background:var(--charcoal);border-bottom:1px solid var(--light-grey);max-height:calc(100vh - 60px);overflow-y:auto;}
+  .nav-mobile.open{display:block;}
+  .nav-mobile a{display:block;padding:.8rem 1.5rem;font-family:'IBM Plex Mono',monospace;font-size:.82rem;font-weight:600;letter-spacing:.08em;color:var(--grey);text-decoration:none;text-transform:uppercase;border-bottom:1px solid var(--light-grey);transition:color .2s;}
+  .nav-mobile a:hover{color:var(--red);}
+
+  /* PROGRESS BAR */
+  #progress{position:fixed;top:60px;left:0;right:0;z-index:99;height:3px;background:var(--red);transform-origin:left;transform:scaleX(0);transition:transform .1s linear;}
+
+  /* COVER */
+  #cover{min-height:100vh;background:var(--black);display:grid;place-items:center;padding:6rem 2rem 4rem;position:relative;overflow:hidden;}
+  #cover::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(246,122,28,0.10) 0%,transparent 60%);pointer-events:none;}
+  .cover-inner{max-width:1200px;width:100%;}
+  .cover-title{font-family:'Gabarito',sans-serif;font-weight:900;line-height:.9;text-transform:uppercase;}
+  .cover-title .line-white{font-size:clamp(3rem,11vw,11rem);color:var(--white);display:block;}
+  .cover-title .line-red{font-size:clamp(1.8rem,5.5vw,5rem);color:var(--red);display:block;margin-top:.35rem;}
+  .cover-rule{width:100%;height:2px;background:var(--red);margin:2rem 0;transform:scaleX(0);transform-origin:left;animation:ruleIn .8s .6s cubic-bezier(.16,1,.3,1) forwards;}
+  @keyframes ruleIn{to{transform:scaleX(1);}}
+  .cover-tagline{font-size:1rem;color:var(--grey);font-style:italic;margin-bottom:3rem;}
+  .cover-byline{font-family:'IBM Plex Mono',monospace;font-size:.7rem;font-weight:600;letter-spacing:.15em;color:#5b6169;text-transform:uppercase;}
+  .fade-up{opacity:0;transform:translateY(24px);animation:fadeUp .7s cubic-bezier(.16,1,.3,1) forwards;}
+  @keyframes fadeUp{to{opacity:1;transform:none;}}
+  .cover-title{animation-delay:.2s;}.cover-tagline{animation-delay:.7s;}.cover-byline{animation-delay:.9s;}
+
+  /* SECTIONS */
+  .content{max-width:1200px;margin:0 auto;padding:0 3rem;}
+  .section{padding:5rem 0 2rem;opacity:0;transform:translateY(32px);transition:opacity .6s ease,transform .6s ease;}
+  .section.visible{opacity:1;transform:none;}
+  .section-header{background:var(--black);border:1px solid var(--light-grey);border-radius:12px;padding:1rem 1.5rem;display:flex;align-items:baseline;gap:.75rem;margin-bottom:2rem;}
+  .section-num{font-family:'Gabarito',sans-serif;font-size:1.3rem;font-weight:900;color:var(--red);}
+  .section-title{font-family:'Gabarito',sans-serif;font-size:2rem;font-weight:800;letter-spacing:.01em;color:var(--white);text-transform:none;}
+  .sub-heading{font-family:'Gabarito',sans-serif;font-size:1.2rem;font-weight:700;letter-spacing:.01em;text-transform:none;color:var(--white);border-left:4px solid var(--red);padding-left:.75rem;margin:2rem 0 .85rem;}
+  .red-label{font-family:'IBM Plex Mono',monospace;font-size:.85rem;font-weight:600;letter-spacing:.12em;color:var(--red);text-transform:uppercase;margin:1.5rem 0 .5rem;}
+  p{font-size:1.05rem;line-height:1.7;color:var(--white);margin-bottom:.85rem;}
+  .callout{background:var(--charcoal);border:1px solid var(--light-grey);border-left:4px solid var(--red);border-radius:8px;padding:1rem 1.25rem;margin:1.5rem 0;}
+  .callout p{color:var(--white);font-style:italic;margin:0;font-size:1.05rem;line-height:1.7;}
+
+  /* PRIORITY TERM HIGHLIGHT */
+  .term-highlight{background:var(--charcoal);border:1px solid var(--light-grey);border-left:4px solid var(--red);border-radius:8px;padding:1.25rem 1.5rem;margin:1rem 0 1.5rem;}
+  .term-highlight-tags{display:flex;flex-wrap:wrap;gap:.6rem;}
+  .term-tag{background:var(--light-grey);color:var(--white);font-family:'IBM Plex Mono',monospace;font-size:.82rem;font-weight:600;letter-spacing:.02em;padding:.55rem 1.1rem;border-radius:6px;white-space:nowrap;border-left:3px solid var(--red);}
+  .bullet-list{list-style:none;margin:.5rem 0 1rem 0;}
+  .bullet-list li{font-size:1rem;line-height:1.65;color:var(--white);padding:.25rem 0 .25rem 1.4rem;position:relative;}
+  .bullet-list li::before{content:'–';position:absolute;left:0;color:var(--red);font-weight:700;}
+  .sub-bullet-list{list-style:none;margin:.35rem 0 .35rem 1.5rem;}
+  .sub-bullet-list li{font-size:.95rem;line-height:1.6;color:var(--grey);padding:.2rem 0 .2rem 1.2rem;position:relative;}
+  .sub-bullet-list li::before{content:'›';position:absolute;left:0;color:var(--grey);font-weight:700;}
+  .num-list{list-style:none;margin:.5rem 0 1rem 0;counter-reset:numlist;}
+  .num-list li{font-size:1rem;line-height:1.65;color:var(--white);padding:.3rem 0 .3rem 2rem;position:relative;counter-increment:numlist;}
+  .num-list li::before{content:counter(numlist)'.';position:absolute;left:0;color:var(--red);font-weight:700;font-family:'Gabarito',sans-serif;}
+
+  /* PHASE / PRIORITY BOX */
+  .phase-box{display:flex;gap:1.1rem;background:var(--charcoal);padding:1.25rem 1.5rem;margin:1rem 0;align-items:flex-start;}
+  .phase-num{font-family:'Gabarito',sans-serif;font-size:2rem;font-weight:900;color:var(--red);line-height:1;flex-shrink:0;}
+  .phase-title{font-family:'Gabarito',sans-serif;font-size:1.15rem;font-weight:800;letter-spacing:.01em;text-transform:none;color:var(--white);margin-bottom:.4rem;}
+  .phase-content p{color:var(--grey);margin-bottom:.5rem;}
+  .phase-content .bullet-list li{font-size:.97rem;color:var(--grey);}
+  .phase-content .bullet-list li::before{color:var(--red);}
+  .phase-content .red-label{color:var(--red);margin:1rem 0 .35rem;}
+
+  /* PRIORITY CARD (Immediate Priorities) */
+  .priority-card{background:var(--charcoal);border:1px solid var(--light-grey);border-left:4px solid var(--red);border-radius:8px;padding:1.1rem 1.5rem;margin-bottom:1rem;}
+  .priority-title{font-family:'Gabarito',sans-serif;font-weight:800;letter-spacing:.01em;text-transform:none;font-size:1.05rem;color:var(--white);margin-bottom:.4rem;}
+  .priority-body{font-size:.98rem;line-height:1.6;color:var(--grey);}
+
+  /* INSIGHT TABLE (2-col) */
+  .insight-table{width:100%;border-collapse:collapse;margin:1.5rem 0;}
+  .insight-table tr{border-bottom:1px solid var(--light-grey);}
+  .insight-table td{padding:.9rem 1rem;font-size:1rem;vertical-align:top;}
+  .insight-table td:first-child{background:var(--light-grey);width:25%;font-family:'IBM Plex Mono',monospace;font-size:.78rem;font-weight:600;letter-spacing:.1em;color:var(--red);text-transform:uppercase;line-height:1.4;}
+  .insight-table td:last-child{background:var(--charcoal);color:var(--white);line-height:1.6;}
+
+  /* MONTHLY SEASONALITY BAR CHART */
+  .season-chart{display:flex;align-items:flex-end;gap:.6rem;margin:1.75rem 0 0;padding:1.5rem 1.25rem .25rem;background:var(--charcoal);border:1px solid var(--light-grey);border-radius:8px;}
+  .season-bar-col{flex:1;display:flex;flex-direction:column;align-items:center;min-width:0;}
+  .season-bar-value{font-family:'IBM Plex Mono',monospace;font-size:.68rem;font-weight:600;color:var(--grey);margin-bottom:.4rem;white-space:nowrap;}
+  .season-bar-col.peak .season-bar-value{color:var(--red);}
+  .season-bar-track{height:150px;display:flex;align-items:flex-end;justify-content:center;width:100%;}
+  .season-bar{width:100%;max-width:34px;background:var(--light-grey);border-radius:3px 3px 0 0;min-height:4px;}
+  .season-bar-col.peak .season-bar{background:var(--red);}
+  .season-bar-label{font-family:'IBM Plex Mono',monospace;font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--grey);margin-top:.6rem;}
+  .season-bar-col.peak .season-bar-label{color:var(--white);}
+  .season-legend{display:flex;gap:1.5rem;flex-wrap:wrap;margin:.9rem 0 1.5rem;}
+  .season-legend-item{display:flex;align-items:center;gap:.45rem;}
+  .season-legend-swatch{width:12px;height:12px;border-radius:2px;display:inline-block;flex-shrink:0;}
+  .season-legend-lbl{font-family:'IBM Plex Mono',monospace;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--grey);}
+  @media(max-width:600px){
+    .season-chart{gap:.28rem;padding:1.15rem .4rem .2rem;}
+    .season-bar-track{height:110px;}
+    .season-bar{max-width:20px;}
+    .season-bar-value{font-size:.54rem;margin-bottom:.25rem;}
+    .season-bar-label{font-size:.54rem;margin-top:.4rem;}
+  }
+
+  /* MATRIX / DATA TABLE (multi-column) */
+  .matrix-wrap{width:100%;overflow-x:auto;margin:1.5rem 0;}
+  .matrix-table{width:100%;border-collapse:collapse;min-width:640px;background:var(--charcoal);border:1px solid var(--light-grey);border-radius:8px;overflow:hidden;}
+  .matrix-table th{background:var(--black);color:var(--white);font-family:'IBM Plex Mono',monospace;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.85rem 1rem;text-align:left;border-bottom:2px solid var(--red);}
+  .matrix-table th:first-child{background:var(--black);color:var(--red);}
+  .matrix-table td{padding:.8rem 1rem;font-size:.92rem;line-height:1.5;color:var(--white);border-bottom:1px solid var(--light-grey);vertical-align:top;}
+  .matrix-table td:first-child{background:var(--light-grey);color:var(--red);font-family:'IBM Plex Mono',monospace;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;}
+  .matrix-table tr:last-child td{border-bottom:none;}
+
+  /* COMPACT TABLE VARIANT — for tables that should stay a table on mobile, just tighter (no horizontal scroll) */
+  .matrix-wrap.compact-table{overflow-x:visible;}
+  .matrix-table.compact-table{min-width:0;table-layout:fixed;}
+  .matrix-table.compact-table th,
+  .matrix-table.compact-table td{padding:.7rem .5rem;white-space:normal;word-break:break-word;}
+  @media(max-width:600px){
+    .matrix-table.compact-table th{padding:.5rem .3rem;font-size:.6rem;letter-spacing:.02em;line-height:1.2;}
+    .matrix-table.compact-table td{padding:.5rem .3rem;font-size:.7rem;line-height:1.3;}
+    .matrix-table.compact-table td:first-child{font-size:.6rem;letter-spacing:.02em;}
+  }
+
+  /* FRAMEWORK TABLE — responsive: horizontal table on desktop, stacked phase cards on mobile */
+  .framework-desktop{display:block;}
+  .framework-mobile{display:none;}
+  .fw-card{background:var(--charcoal);border:1px solid var(--light-grey);border-top:3px solid var(--red);border-radius:8px;padding:1.15rem 1.3rem;margin-bottom:1rem;}
+  .fw-card-title{font-family:'Gabarito',sans-serif;font-weight:800;font-size:1.15rem;letter-spacing:.01em;text-transform:none;color:var(--white);margin-bottom:.15rem;}
+  .fw-card-timing{font-family:'IBM Plex Mono',monospace;font-size:.72rem;font-weight:600;letter-spacing:.12em;color:var(--red);text-transform:uppercase;margin-bottom:1rem;}
+  .fw-row{padding:.6rem 0;border-top:1px solid var(--light-grey);}
+  .fw-row:first-of-type{border-top:none;padding-top:0;}
+  .fw-row-label{font-family:'IBM Plex Mono',monospace;font-size:.64rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--grey);margin-bottom:.25rem;}
+  .fw-row-value{font-size:.92rem;line-height:1.55;color:var(--white);}
+  @media(max-width:700px){
+    .framework-desktop{display:none;}
+    .framework-mobile{display:block;}
+  }
+
+  /* FLOW DIAGRAM */
+  .flow{display:flex;flex-direction:column;align-items:stretch;gap:0;margin:2rem 0;}
+  .flow-tile{background:var(--charcoal);border:1px solid var(--light-grey);border-left:4px solid var(--red);border-radius:8px;padding:1.1rem 1.5rem;text-align:left;width:100%;}
+  .flow-tile-title{font-family:'Gabarito',sans-serif;font-weight:800;letter-spacing:.01em;text-transform:none;font-size:1.05rem;color:var(--white);margin-bottom:.4rem;}
+  .flow-tile-body{font-size:.95rem;line-height:1.6;color:var(--grey);}
+  .flow-arrow{color:var(--red);font-size:1.3rem;line-height:1;padding:.35rem 0;font-weight:900;align-self:center;}
+
+  /* MOOD BOARD */
+  .moodboard-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.85rem;margin:1.5rem 0;}
+  .moodboard-grid img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:14px;display:block;}
+  @media(max-width:700px){
+    .moodboard-grid{grid-template-columns:repeat(2,1fr);gap:.6rem;}
+  }
+
+  /* COMMENTS */
+  .section-comment-btn{display:inline-flex;align-items:center;gap:.4rem;margin-top:1.5rem;background:transparent;border:1.5px solid var(--light-grey);border-radius:999px;padding:.45rem .9rem;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--grey);transition:all .2s;}
+  .section-comment-btn:hover{border-color:var(--red);color:var(--red);}
+  .section-comment-btn .cb-count{background:var(--red);color:var(--black);font-size:.72rem;font-weight:700;padding:.1rem .4rem;border-radius:999px;min-width:20px;text-align:center;display:none;}
+  .section-comment-btn.has-comments .cb-count{display:inline-block;}
+  .comment-panel{display:none;border:1px solid var(--light-grey);border-radius:8px;background:var(--charcoal);margin-top:.75rem;}
+  .comment-panel.open{display:block;}
+  .comment-panel-inner{padding:1.25rem;}
+  .comment-thread{margin-bottom:1rem;}
+  .comment-item{border-left:3px solid var(--red);border-radius:0 6px 6px 0;padding:.75rem 1rem;margin-bottom:.75rem;background:var(--light-grey);}
+  .comment-item-header{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.25rem;margin-bottom:.35rem;}
+  .comment-item-name{font-family:'Gabarito',sans-serif;font-weight:700;font-size:1rem;color:var(--white);}
+  .comment-item-time{font-size:.72rem;color:var(--grey);}
+  .comment-item-text{font-size:.95rem;line-height:1.6;color:var(--white);}
+  .no-comments{font-size:.9rem;color:var(--grey);font-style:italic;margin-bottom:1rem;}
+  .comment-form textarea{width:100%;padding:.6rem .75rem;border:1px solid var(--light-grey);border-radius:6px;font-family:'Figtree',sans-serif;font-size:.95rem;resize:vertical;outline:none;background:var(--black);color:var(--white);display:block;margin-bottom:.5rem;}
+  .comment-form-row{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;}
+  .comment-form input[type=text]{flex:1;min-width:140px;padding:.5rem .65rem;border:1px solid var(--light-grey);border-radius:6px;font-family:'Figtree',sans-serif;font-size:.95rem;outline:none;background:var(--black);color:var(--white);}
+  .comment-post-btn{background:var(--red);color:var(--black);border:none;border-radius:999px;padding:.5rem 1.25rem;font-family:'Figtree',sans-serif;font-size:.9rem;font-weight:600;letter-spacing:.02em;text-transform:none;cursor:pointer;white-space:nowrap;}
+  .comment-post-btn:hover{background:var(--red-dark);}
+  .comment-post-btn:disabled{opacity:.5;cursor:default;}
+  .comment-status{font-size:.82rem;color:var(--grey);margin-top:.35rem;}
+
+  /* FOOTER */
+  footer{background:var(--black);border-top:1px solid var(--light-grey);padding:4rem 3rem;display:flex;justify-content:center;align-items:center;}
+
+  /* ================= TRACKER ================= */
+  .tk-phase{margin-bottom:2.5rem;}
+  .tk-phase-hdr{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;}
+  .tk-phase-rule{flex:1;height:1px;background:var(--light-grey);}
+  .tk-phase-pill{background:var(--black);border:1px solid var(--light-grey);border-radius:999px;padding:.55rem 1.25rem;display:flex;align-items:baseline;gap:.5rem;flex-shrink:0;}
+  .tk-phase-num{font-family:'Gabarito',sans-serif;font-size:1.5rem;font-weight:900;color:var(--red);}
+  .tk-phase-lbl{font-family:'IBM Plex Mono',monospace;font-size:.78rem;font-weight:600;letter-spacing:.1em;color:var(--white);text-transform:uppercase;}
+  .tk-phase-sub{font-family:'IBM Plex Mono',monospace;font-size:.68rem;font-weight:600;letter-spacing:.1em;color:var(--grey);text-transform:uppercase;margin:-.6rem 0 1rem;}
+  .tk-progress-wrap{background:var(--charcoal);border:1px solid var(--light-grey);border-radius:8px;padding:1.1rem 1.4rem;margin-bottom:2rem;display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap;}
+  .tk-progress-stat{font-family:'Gabarito',sans-serif;font-size:1.6rem;font-weight:900;color:var(--white);white-space:nowrap;}
+  .tk-progress-stat span{color:var(--red);}
+  .tk-progress-track{flex:1;min-width:160px;height:8px;background:var(--light-grey);border-radius:4px;overflow:hidden;}
+  .tk-progress-fill{height:100%;background:var(--red);border-radius:4px;transition:width .5s ease;}
+  .tk-progress-lbl{font-family:'IBM Plex Mono',monospace;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);}
+
+  .tk-item-list{display:flex;flex-direction:column;gap:.85rem;}
+  .tk-card{background:var(--charcoal);border:1px solid var(--light-grey);border-radius:10px;padding:1.1rem 1.25rem 1.25rem;}
+  .tk-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;padding-bottom:.9rem;border-bottom:1px solid var(--light-grey);margin-bottom:1rem;}
+  .tk-action-wrap{flex:1;min-width:0;}
+  .tk-action{font-size:1.02rem;font-weight:700;line-height:1.4;color:var(--white);}
+  .tk-action.hidden{display:none;}
+  .tk-card-controls{display:flex;align-items:center;gap:.5rem;flex-shrink:0;}
+  .tk-icon-btn{position:relative;background:var(--black);border:1px solid var(--light-grey);border-radius:6px;width:34px;height:34px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--grey);flex-shrink:0;transition:all .15s;}
+  .tk-icon-btn:hover{border-color:var(--red);color:var(--red);}
+  .tk-icon-btn.has-comments{color:var(--white);}
+  .tk-comment-btn{position:relative;background:var(--black);border:1px solid var(--light-grey);border-radius:6px;height:34px;padding:0 .65rem;cursor:pointer;display:inline-flex;align-items:center;gap:.35rem;color:var(--grey);flex-shrink:0;transition:all .15s;font-family:'IBM Plex Mono',monospace;font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;}
+  .tk-comment-btn:hover{border-color:var(--red);color:var(--red);}
+  .tk-comment-btn.has-comments{color:var(--white);border-color:#3a3f47;}
+  .tk-badge{position:absolute;top:-7px;right:-7px;background:var(--red);color:var(--black);font-size:.62rem;font-weight:700;border-radius:8px;min-width:16px;height:16px;padding:0 3px;display:flex;align-items:center;justify-content:center;line-height:1;}
+
+  .tk-status-label{font-family:'IBM Plex Mono',monospace;font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);margin-bottom:.5rem;display:block;}
+  select.tk-status-select{width:100%;display:block;text-align:center;text-align-last:center;-moz-text-align-last:center;padding:.7rem 1rem;border:none;border-radius:8px;font-family:'Gabarito',sans-serif;font-weight:700;letter-spacing:.02em;text-transform:none;font-size:.92rem;cursor:pointer;appearance:none;-webkit-appearance:none;}
+  .tk-status-select.status-pending{background:#2b2f36;color:var(--grey);}
+  .tk-status-select.status-in-progress{background:rgba(226,165,60,0.16);color:var(--amber);}
+  .tk-status-select.status-complete{background:rgba(63,207,122,0.16);color:var(--green);}
+
+  /* EDIT-IN-PLACE */
+  .tk-edit-wrap{display:none;margin-top:.4rem;}
+  .tk-edit-wrap.open{display:block;}
+  .tk-edit-textarea{width:100%;padding:.6rem .75rem;border:1.5px solid var(--red);border-radius:6px;font-family:'Figtree',sans-serif;font-size:.98rem;line-height:1.5;resize:vertical;outline:none;background:var(--black);color:var(--white);display:block;margin-bottom:.5rem;min-height:64px;}
+  .tk-edit-actions{display:flex;gap:.5rem;}
+  .tk-edit-save{background:var(--red);color:var(--black);border:none;border-radius:999px;padding:.45rem 1.1rem;font-family:'Figtree',sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.02em;text-transform:none;cursor:pointer;}
+  .tk-edit-save:hover{background:var(--red-dark);}
+  .tk-edit-save:disabled{opacity:.5;cursor:default;}
+  .tk-edit-cancel{background:transparent;color:var(--grey);border:1.5px solid var(--light-grey);border-radius:999px;padding:.45rem 1.1rem;font-family:'Figtree',sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.02em;text-transform:none;cursor:pointer;}
+  .tk-edit-cancel:hover{border-color:var(--red);color:var(--red);}
+
+  .tk-comment-panel{display:none;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--light-grey);}
+  .tk-comment-panel.open{display:block;}
+  .tk-comment-thread{margin-bottom:.75rem;display:flex;flex-direction:column;gap:.6rem;}
+  .tk-comment-item{border-left:3px solid var(--red);border-radius:0 6px 6px 0;padding:.6rem .85rem;background:var(--light-grey);}
+  .tk-comment-item-header{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.25rem;margin-bottom:.25rem;}
+  .tk-comment-item-name{font-family:'Gabarito',sans-serif;font-weight:700;font-size:.9rem;color:var(--white);}
+  .tk-comment-item-time{font-size:.72rem;color:var(--grey);}
+  .tk-comment-item-text{font-size:.9rem;line-height:1.55;color:var(--white);}
+  .tk-no-comments{font-size:.85rem;color:var(--grey);font-style:italic;margin-bottom:.75rem;}
+  .tk-comment-form textarea{width:100%;padding:.55rem .7rem;border:1px solid var(--light-grey);border-radius:6px;font-family:'Figtree',sans-serif;font-size:.9rem;resize:vertical;outline:none;background:var(--black);color:var(--white);display:block;margin-bottom:.5rem;min-height:52px;}
+  .tk-comment-form-row{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;}
+  .tk-comment-form input[type=text]{flex:1;min-width:130px;padding:.5rem .6rem;border:1px solid var(--light-grey);border-radius:6px;font-family:'Figtree',sans-serif;font-size:.9rem;outline:none;background:var(--black);color:var(--white);}
+  .tk-comment-post-btn{background:var(--red);color:var(--black);border:none;border-radius:999px;padding:.5rem 1.1rem;font-family:'Figtree',sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.02em;text-transform:none;cursor:pointer;white-space:nowrap;}
+  .tk-comment-post-btn:hover{background:var(--red-dark);}
+  .tk-comment-post-btn:disabled{opacity:.5;cursor:default;}
+  .tk-comment-status{font-size:.78rem;color:var(--grey);margin-top:.3rem;}
+
+  /* DESKTOP TABLE (901px+) */
+  .tk-table-wrap{display:none;}
+  .tk-table{width:100%;border-collapse:collapse;background:var(--charcoal);border:1px solid var(--light-grey);border-radius:10px;overflow:hidden;}
+  .tk-table thead th{background:var(--black);color:var(--white);font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;text-align:left;padding:.75rem 1rem;font-weight:600;}
+  .tk-table thead th.tk-th-center{text-align:center;}
+  .tk-table tbody tr.tk-row{border-top:1px solid var(--light-grey);}
+  .tk-table tbody tr.tk-row:hover{background:var(--light-grey);}
+  .tk-table td{padding:.85rem 1rem;font-size:.95rem;color:var(--white);vertical-align:middle;}
+  .tk-table td.tk-td-action{font-weight:600;line-height:1.4;}
+  .tk-table td.tk-td-status{width:190px;}
+  .tk-table td.tk-td-comments{width:70px;text-align:center;}
+  .tk-table td.tk-td-edit{width:50px;text-align:center;}
+  .tk-table td.tk-td-delete{width:50px;text-align:center;}
+  .tk-table select.tk-status-select{font-size:.8rem;padding:.5rem .5rem;}
+  .tk-comment-row{display:none;}
+  .tk-comment-row.open{display:table-row;}
+  .tk-comment-row td{padding:0;border-top:none;}
+  .tk-comment-row-inner{padding:1.1rem 1.5rem 1.25rem;background:var(--light-grey);border-top:1px dashed var(--light-grey);}
+
+  .tk-add-form{display:flex;gap:.6rem;margin-top:.75rem;flex-wrap:wrap;}
+  .tk-add-form input{flex:1;min-width:220px;font-family:'Figtree',sans-serif;font-size:.95rem;padding:.55rem .7rem;border:1px solid var(--light-grey);border-radius:6px;background:var(--black);color:var(--white);}
+  .tk-add-btn{font-family:'Figtree',sans-serif;font-weight:600;letter-spacing:.02em;text-transform:none;font-size:.85rem;padding:.55rem 1.1rem;border:none;border-radius:999px;cursor:pointer;background:var(--red);color:var(--black);}
+  .tk-add-btn:hover{background:var(--red-dark);}
+  .tk-add-toggle{margin-top:.9rem;background:none;border:2px dashed var(--light-grey);border-radius:8px;width:100%;padding:.75rem;font-family:'IBM Plex Mono',monospace;font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:.78rem;color:var(--grey);cursor:pointer;}
+  .tk-add-toggle:hover{border-color:var(--red);color:var(--red);}
+
+  /* RESPONSIVE */
+  @media(max-width:768px){
+    .bhag-title{font-size:1.1rem !important;}
+  }
+  @media(max-width:900px){
+    .nav-links{display:none;}
+    .hamburger{display:flex;}
+    .content{padding:0 1.25rem;}
+    nav{padding:0 1.25rem;}
+    footer{padding:3rem 1.25rem;}
+    .cover-title .line-white{font-size:clamp(3rem,18vw,7rem);}
+    .cover-title .line-red{font-size:clamp(1.5rem,7vw,3rem);}
+    .section-title{font-size:1.3rem;}
+    #cover{padding:5rem 1.25rem 3rem;}
+  }
+  @media(min-width:901px){
+    .tk-body-mobile{display:none;}
+    .tk-table-wrap{display:block;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand"><span>ARCUS HUNTING</span> · SMITH &amp; WESSON</div>
+  <div class="nav-links">
+    <a href="#s01">Overview</a>
+    <a href="#s02">Growth Area 1</a>
+    <a href="#s03">Growth Area 2</a>
+    <a href="#s04">Growth Area 3</a>
+    <a href="#s05">Creative</a>
+    <a href="#s06">Tracker</a>
+  </div>
+  <div class="hamburger" onclick="toggleMenu()" id="hbg">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="#s01" onclick="toggleMenu()">Overview</a>
+  <a href="#s02" onclick="toggleMenu()">Growth Area 1</a>
+  <a href="#s03" onclick="toggleMenu()">Growth Area 2</a>
+  <a href="#s04" onclick="toggleMenu()">Growth Area 3</a>
+  <a href="#s05" onclick="toggleMenu()">Creative Direction</a>
+  <a href="#s06" onclick="toggleMenu()">Roadmap Tracker</a>
+</div>
+<div id="progress"></div>
+
+<!-- COVER -->
+<section id="cover">
+  <div class="cover-inner">
+    <div class="cover-title fade-up">
+      <span class="line-white">Arcus Hunting</span>
+      <span class="line-red">Smith &amp; Wesson</span>
+    </div>
+    <div class="cover-rule"></div>
+    <p class="cover-tagline fade-up">Amazon Launch Strategy</p>
+    <p class="cover-byline fade-up">Prepared by FTR &nbsp;·&nbsp; Amazon &amp; Walmart Growth</p>
+  </div>
+</section>
+
+<!-- S01 — OVERVIEW -->
+<!-- S01 — STRATEGY OBJECTIVE -->
+<div class="section" id="s01">
+  <div class="content">
+    <div class="section-header"><span class="section-title">Overview</span></div>
+
+    <p>Successfully launch and establish the Smith &amp; Wesson licensed product line on Amazon, creating the foundation for scalable growth.</p>
+    <p>With no meaningful Amazon sales history and most inventory still inbound, the immediate focus is to build listings, establish initial reviews and conversion, and prepare each product for a launch.</p>
+
+    <div id="comments-s01"></div>
+  </div>
+</div>
+
+<!-- S02 — GROWTH AREA 1: ESTABLISH LAUNCH READINESS -->
+<div class="section" id="s02">
+  <div class="content">
+    <div class="section-header"><span class="section-title"><span style="color:var(--red)">Growth Area 1:</span> Establish Launch Readiness</span></div>
+
+    <p>The products should be fully Amazon-ready before significant traffic is introduced.</p>
+
+    <div class="sub-heading">Catalog &amp; Inventory</div>
+    <ul class="bullet-list">
+      <li>Confirm inventory availability and launch timing across priority ASINs.</li>
+      <li>Resolve the currently blocked ASINs and any additional compliance issues.</li>
+      <li>Confirm appropriate parent/variation structures where applicable.</li>
+      <li>Explore inclusion of Arcus products within the existing Smith &amp; Wesson Store.</li>
+    </ul>
+
+    <div class="sub-heading">Listings &amp; Creative</div>
+    <ul class="bullet-list">
+      <li>Complete keyword and competitive research for each product.</li>
+      <li>Fully optimize titles, bullets, attributes, backend terms, and product positioning.</li>
+      <li>Develop optimized Main Images and complete image stacks.</li>
+      <li>Clearly communicate product differences, use cases, functionality, and key selling points.</li>
+      <li>Develop fully optimised A+ pages.</li>
+      <li>Ensure all claims and content meet applicable compliance requirements.</li>
+    </ul>
+
+    <div id="comments-s02"></div>
+  </div>
+</div>
+
+<!-- S03 — GROWTH AREA 2: EXECUTE PRODUCT LAUNCHES -->
+<div class="section" id="s03">
+  <div class="content">
+    <div class="section-header"><span class="section-title"><span style="color:var(--red)">Growth Area 2:</span> Execute Product Launches</span></div>
+
+    <p>Each priority product should have a defined launch plan aligned with inventory availability and launch readiness.</p>
+
+    <div class="sub-heading">Launch Strategy</div>
+    <p>For each priority product:</p>
+    <ul class="bullet-list">
+      <li>Define launch timing and inventory requirements.</li>
+      <li>Establish launch offer.</li>
+      <li>Define initial PPC investment and search priorities.</li>
+      <li>Establish review-generation approach.</li>
+      <li>Activate Creator Connections.</li>
+      <li>Confirm all listing, A+, and video assets are live before scaling traffic.</li>
+    </ul>
+
+    <div class="sub-heading">Build the Review Foundation</div>
+    <p>With no established review history, reviews should be a key part of the launch.</p>
+    <ul class="bullet-list">
+      <li>Enroll eligible products in Amazon Vine.</li>
+    </ul>
+
+    <div class="sub-heading">Creator Connections</div>
+    <p>Use Smith &amp; Wesson's existing brand recognition to support product education and initial awareness.</p>
+    <ul class="bullet-list">
+      <li>Activate Creator Connections around priority product launches.</li>
+      <li>Focus content on product demonstration, functionality, and use case.</li>
+      <li>Scale activity around products and creator content demonstrating strong performance.</li>
+    </ul>
+
+    <div id="comments-s03"></div>
+  </div>
+</div>
+
+<!-- S04 — GROWTH AREA 3: SCALE CUSTOMER ACQUISITION -->
+<div class="section" id="s04">
+  <div class="content">
+    <div class="section-header"><span class="section-title"><span style="color:var(--red)">Growth Area 3:</span> Scale Customer Acquisition</span></div>
+
+    <p>Initial acquisition should focus on establishing relevance across the highest-intent opportunities before expanding investment.</p>
+
+    <div class="sub-heading">Search &amp; SEO</div>
+    <ul class="bullet-list">
+      <li>Capture relevant Smith &amp; Wesson branded demand.</li>
+      <li>Establish visibility across high-intent non-branded searches by product.</li>
+      <li>Align SEO and PPC around the same priority searches.</li>
+      <li>Use early Search Query Performance, conversion, and advertising data to identify where Smith &amp; Wesson products can gain meaningful search position.</li>
+      <li>Expand into broader opportunities as products establish conversion and sales history.</li>
+    </ul>
+
+    <div class="sub-heading">Advertising Strategy</div>
+    <p>Advertising supports the product by product launch plan rather than leading it. With no meaningful sales history, inventory still inbound, and reviews yet to be established, early paid investment is defined per launch and kept deliberately controlled; establishing relevance across the highest intent searches first, then expanding as each product builds conversion and review history. Vine and Creator Connections carry much of the early trust building; advertising reinforces that momentum.</p>
+    <p>Before campaigns are built, we will confirm that the Smith &amp; Wesson licensing agreement permits all intended advertising types, particularly branded formats that feature the Smith &amp; Wesson name in ad creative, so the structure is designed within any brand usage requirements from the outset.</p>
+
+    <div class="red-label">Recommendations</div>
+    <ul class="bullet-list">
+      <li>Define advertising per product launch. Establish a launch specific ad approach for each priority ASIN, timed to inventory availability and listing readiness, rather than a single account wide push.</li>
+      <li>Capture branded demand first. Establish campaigns to capture existing Smith &amp; Wesson brand recognition and convert shoppers already searching the name; the most efficient early demand available to a new line.</li>
+      <li>Build high-intent non-branded relevance. Establish visibility on the highest intent non-branded searches per product (pepper spray, bear spray, personal protection), aligned with SEO, expanding into broader terms only as conversion and sales history develop.</li>
+      <li>Start controlled and expand on evidence. Begin with contained budgets and tight targeting, scaling investment behind the products and searches that demonstrate the strongest early conversion.</li>
+      <li>Capture competitor demand as readiness allows. Establish deliberate targeting against category competitors (Sabre, POM, Mace, Byrna, Guard Dog) once listings are conversion-ready and review depth supports it.</li>
+      <li>Confirm licensing scope up front. Validate permitted ad types and any brand-usage requirements under the licensing agreement before building campaigns.</li>
+    </ul>
+
+    <p>Advertising will be managed to Smith &amp; Wesson's efficiency guardrails, prioritizing a clean, well converting launch foundation over early volume, and scaling as each product establishes itself.</p>
+
+    <div id="comments-s04"></div>
+  </div>
+</div>
+
+<!-- S05 — CREATIVE DIRECTION -->
+<div class="section" id="s05">
+  <div class="content">
+    <div class="section-header"><span class="section-title">Creative Direction</span></div>
+
+    <div class="sub-heading">The Core Opportunity</div>
+    <p>This is a launch, not an optimization — no sales history, no reviews, inventory still inbound. We're building trust from zero on Amazon while borrowing maximum credibility from a globally recognized name. The strategic thesis: lead with "the trusted name, now protecting you every day." S&amp;W's equity (Protective, Confident, Dependable, Legendary) transfers naturally to personal protection — the creative job is to make that transfer feel earned and immediate, not just a logo slapped on a pepper spray can.</p>
+    <p>Because this is a licensed line, there's an operational reality baked into every creative decision: any asset using the S&amp;W name or logo needs Licensing Department sign-off before it goes live. This should be built into the production calendar as a standing step, not an afterthought — it directly affects the Days 1–30 "optimize priority listings and Main Images" timeline in the roadmap.</p>
+
+    <div class="sub-heading">Visual System</div>
+    <p>Brand already has strongly built out creative guidelines. We'll be carrything the existing branding through all Amazon imagery closely for consumer-brand trust.</p>
+    <p>Tone of imagery: the Style Guide's own creative (moody skies, weathered Americana, a hand steadying a hip holster) leans serious and cinematic rather than tactical/aggressive. That's the tone to carry into personal-protection lifestyle imagery — protective and steady, not fear-based marketing.</p>
+
+    <div class="sub-heading">Main Images (supports Growth Area 1 — retail readiness)</div>
+    <p>One clear trust signal per ASIN — S&amp;W brand recognition is the single biggest asset a brand-new listing has; make sure it's legible in the search-results thumbnail, not just on the full listing.</p>
+    <p>Since there's no review history yet, Main Image work is carrying more conversion weight than usual — prioritize clarity of what the product is and does over stylistic flourish.</p>
+
+    <div class="sub-heading">Secondary Images — Trust &amp; Education Sequence</div>
+    <p>With zero review history, secondary images need to do double duty: educate on product use and build first-time trust.</p>
+    <ul class="bullet-list">
+      <li>Brand credibility opener — S&amp;W heritage/recognition, tastefully, not overused.</li>
+      <li>Use-case clarity — who this product is for and when (commute, trail, home) — directly answers the "clearly communicate product differences, use cases, functionality" recommendation already in the plan.</li>
+      <li>Functionality demo — range, deployment, ease of use.</li>
+      <li>Safety/compliance callout — active ingredient, certifications, safe handling.</li>
+      <li>Lifestyle shot — protective, steady tone; avoid staged "attacker" scenarios that could read as fear-mongering or violate Amazon content policy.</li>
+      <li>Cross-sell/kit callout — holster, refill, multi-pack — supports AOV from day one even without review depth yet.</li>
+    </ul>
+
+    <div class="sub-heading">A+ Content</div>
+    <ul class="bullet-list">
+      <li>Lead with a brand credibility module — S&amp;W heritage translated into "why trust this for protection," not a firearms callback.</li>
+      <li>A clear "which product is right for you" module — critical for a multi-format launch line (keychain, holstered, bear spray) with no organic reviews yet to guide shoppers.</li>
+      <li>Compliance/safety module — ingredient, certification, safe use — this doubles as trust-building content in the absence of reviews.</li>
+      <li>Cross-sell module for holsters, refills, and multi-packs.</li>
+    </ul>
+
+    <div class="sub-heading">Brand Story</div>
+    <p>This is the strongest place to lean into S&amp;W heritage without overloading the individual listings — history, American manufacturing story, "protection is in our name" positioning.</p>
+    <p>Since Vine and Creator Connections are carrying early trust-building per the plan, Brand Story should reinforce the same message those channels are pushing, not introduce a separate narrative.</p>
+
+    <div class="sub-heading">Store</div>
+    <p>Explore folding the Arcus-adjacent protection line into the existing S&amp;W Store structure (already flagged as a recommendation in the plan) rather than building a standalone store — this borrows existing Store traffic/trust rather than starting from zero.</p>
+    <p>Guided navigation by use case (everyday carry, outdoor/wildlife, home) rather than by product format, since format alone won't mean much to a first-time shopper.</p>
+
+    <div class="sub-heading">Compliance Flags for Sign-Off</div>
+    <ul class="bullet-list">
+      <li>Licensing Department approval on every asset using S&amp;W name/logo — build this into the production timeline now.</li>
+      <li>State-level restrictions on pepper spray sale/possession — confirm Amazon listing restrictions/age-verification are correctly configured per the "resolve blocked ASINs and compliance issues" item already in Growth Area 1.</li>
+      <li>Confirm advertising licensing scope (the plan already flags this) before any creative featuring the S&amp;W name goes into ad campaigns.</li>
+      <li>Any performance/effectiveness claims (range, incapacitation time, certifications) need legal substantiation before locking copy.</li>
+    </ul>
+
+    <div class="callout"><p>For more detailed creative strategy, visit this link: <a href="https://www.figma.com/design/B4avgnlIFEBP9wNKcBKJPm/Smith---Wesson---Client-Reviews?node-id=1-5&p=f&t=X9YY48AIMGSoM5cw-0" target="_blank" style="color:var(--white);font-weight:700;text-decoration:underline;text-underline-offset:3px;">Figma Link</a></p></div>
+
+    <div id="comments-s05"></div>
+  </div>
+</div>
+
+<!-- S06 — ROADMAP TRACKER -->
+<div class="section" id="s06">
+  <div class="content">
+    <div class="section-header"><span class="section-title">Roadmap &amp; Tracker</span></div>
+
+    <p>Track progress against every action in the roadmap. Update a status as work moves along, edit an action's wording directly, or add a new action under any phase.</p>
+
+    <div id="trackerRoot"></div>
+
+    <div id="comments-s06"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div style="text-align:center;width:100%;">
+    <div style="font-family:'Gabarito',sans-serif;font-size:clamp(1.8rem,5vw,3rem);font-weight:900;text-transform:none;letter-spacing:.01em;color:var(--red);margin-bottom:.6rem;">Brands built to be remembered.</div>
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:.78rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--grey);">FTR &nbsp;·&nbsp; Amazon &amp; Walmart Growth</div>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu(){
+    document.getElementById('navMobile').classList.toggle('open');
+  }
+
+  // Progress bar
+  window.addEventListener('scroll',()=>{
+    const d=document.documentElement;
+    const pct=(d.scrollTop/(d.scrollHeight-d.clientHeight));
+    document.getElementById('progress').style.transform='scaleX('+pct+')';
+  });
+
+  // Section fade-in
+  const sections=document.querySelectorAll('.section');
+  const sectionObs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting) e.target.classList.add('visible');});
+  },{threshold:0});
+  sections.forEach(s=>sectionObs.observe(s));
+  setTimeout(()=>{ sections.forEach(s=>s.classList.add('visible')); },1500);
+
+  /* ============================================================
+     SUPABASE — shared Amazon Department project
+     ============================================================ */
+  const SUPABASE_URL='https://zbcqdcwibbuyfmytfngn.supabase.co';
+  const SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpiY3FkY3dpYmJ1eWZteXRmbmduIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIyOTgyNTEsImV4cCI6MjA5Nzg3NDI1MX0.gXJna_dG08OVNyQy6VyakhJ7ays93ibLlWCDrS6W1RM';
+  const DOC_PREFIX='smith-wesson-amazon-launch-2026';
+
+  const SECTIONS={
+    's01':'Overview',
+    's02':'Growth Area 1: Establish Launch Readiness',
+    's03':'Growth Area 2: Execute Product Launches',
+    's04':'Growth Area 3: Scale Customer Acquisition',
+    's05':'Creative Direction',
+    's06':'Roadmap & Tracker'
+  };
+
+  async function fetchComments(){
+    try{
+      const ids=Object.keys(SECTIONS).map(s=>`${DOC_PREFIX}-${s}`);
+      const r=await fetch(
+        `${SUPABASE_URL}/rest/v1/comments?section_id=in.(${ids.map(s=>`"${s}"`).join(',')})&order=created_at.asc`,
+        {headers:{'apikey':SUPABASE_KEY,'Authorization':`Bearer ${SUPABASE_KEY}`}}
+      );
+      return await r.json();
+    }catch(e){return[];}
+  }
+
+  async function saveComment(sectionId,name,body){
+    const r=await fetch(`${SUPABASE_URL}/rest/v1/comments`,{
+      method:'POST',
+      headers:{
+        'apikey':SUPABASE_KEY,
+        'Authorization':`Bearer ${SUPABASE_KEY}`,
+        'Content-Type':'application/json',
+        'Prefer':'return=representation'
+      },
+      body:JSON.stringify({section_id:`${DOC_PREFIX}-${sectionId}`,name:name||'Anonymous',body})
+    });
+    if(!r.ok) throw new Error('Failed to save');
+    return await fetchComments();
+  }
+
+  function formatDate(iso){
+    const d=new Date(iso);
+    return d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})
+      +' · '+d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+  }
+
+  function escHtml(s){
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function renderSection(id,comments){
+    const container=document.getElementById('comments-'+id);
+    if(!container) return;
+    const fullId=`${DOC_PREFIX}-${id}`;
+    const sectionComments=comments.filter(c=>c.section_id===fullId);
+    const count=sectionComments.length;
+    container.innerHTML=`
+      <button class="section-comment-btn ${count>0?'has-comments':''}" onclick="togglePanel('${id}')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        ${count>0?count+' comment'+(count>1?'s':''):'Add comment'}
+        <span class="cb-count">${count}</span>
+      </button>
+      <div class="comment-panel ${count>0?'open':''}" id="panel-${id}">
+        <div class="comment-panel-inner">
+          <div class="comment-thread" id="thread-${id}">
+            ${count===0?'<p class="no-comments">No comments yet on this section.</p>':
+              sectionComments.map(c=>`
+                <div class="comment-item">
+                  <div class="comment-item-header">
+                    <span class="comment-item-name">${escHtml(c.name||'Anonymous')}</span>
+                    <span class="comment-item-time">${formatDate(c.created_at)}</span>
+                  </div>
+                  <p class="comment-item-text">${escHtml(c.body)}</p>
+                </div>`).join('')}
+          </div>
+          <div class="comment-form">
+            <textarea id="txt-${id}" rows="2" placeholder="Write a comment or question on this section..."></textarea>
+            <div class="comment-form-row">
+              <input type="text" id="name-${id}" placeholder="Your name (optional)">
+              <button class="comment-post-btn" id="btn-${id}" onclick="postComment('${id}')">Post</button>
+            </div>
+            <div class="comment-status" id="status-${id}"></div>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  function togglePanel(id){
+    const panel=document.getElementById('panel-'+id);
+    panel.classList.toggle('open');
+    if(panel.classList.contains('open')){
+      setTimeout(()=>{const t=document.getElementById('txt-'+id);if(t)t.focus();},50);
+    }
+  }
+
+  async function postComment(id){
+    const txt=document.getElementById('txt-'+id);
+    const nameEl=document.getElementById('name-'+id);
+    const btn=document.getElementById('btn-'+id);
+    const status=document.getElementById('status-'+id);
+    const body=txt.value.trim();
+    if(!body){status.textContent='Please write something first.';status.style.color='#cc1100';return;}
+    btn.disabled=true;status.textContent='Posting...';status.style.color='#8a8a8a';
+    try{
+      const comments=await saveComment(id,nameEl.value.trim(),body);
+      txt.value='';nameEl.value='';
+      status.textContent='Posted ✓';status.style.color='#2a7a2a';
+      setTimeout(()=>{status.textContent='';},3000);
+      Object.keys(SECTIONS).forEach(sid=>renderSection(sid,comments));
+      setTimeout(()=>{const p=document.getElementById('panel-'+id);if(p)p.classList.add('open');},50);
+    }catch(e){
+      status.textContent='Failed to post. Please try again.';status.style.color='#cc1100';
+    }
+    btn.disabled=false;
+  }
+
+  async function initComments(){
+    const comments=await fetchComments();
+    Object.keys(SECTIONS).forEach(id=>renderSection(id,comments));
+    setTimeout(()=>{
+      Object.keys(SECTIONS).forEach(id=>{
+        const panel=document.getElementById('panel-'+id);
+        const hasComments=comments.some(c=>c.section_id===`${DOC_PREFIX}-${id}`);
+        if(panel&&hasComments) panel.classList.add('open');
+      });
+    },200);
+  }
+
+  /* ============================================================
+     TRACKER — event-sourced (append-only) so every team member's
+     edits sync through the same shared Supabase "comments" table,
+     using a distinct key pattern (~) so it never collides with the
+     dash-based section comment keys above.
+
+     Supported ops per event:
+       add    { action, group }   — seeds/creates an item
+       status { status }          — Pending / In Progress / Complete
+       edit   { action }          — rewrites the action's text
+       comment{ text }            — appends a threaded comment
+       delete {}                  — soft-removes the item
+     ============================================================ */
+  const TRACKER_LIKE = `${DOC_PREFIX}~*`;
+
+  async function fetchTrackerEvents(){
+    try{
+      const r = await fetch(`${SUPABASE_URL}/rest/v1/comments?section_id=like.${TRACKER_LIKE}&order=created_at.asc`,
+        { headers:{ apikey:SUPABASE_KEY, Authorization:`Bearer ${SUPABASE_KEY}` } });
+      if(!r.ok) throw new Error('fetch failed');
+      return await r.json();
+    }catch(e){ console.error(e); return null; }
+  }
+
+  async function pushTrackerEvent(phaseKey, itemId, author, payload){
+    const section_id = `${DOC_PREFIX}~${phaseKey}~${itemId}`;
+    const r = await fetch(`${SUPABASE_URL}/rest/v1/comments`, {
+      method:'POST',
+      headers:{ apikey:SUPABASE_KEY, Authorization:`Bearer ${SUPABASE_KEY}`,
+                'Content-Type':'application/json', 'Prefer':'return=representation' },
+      body: JSON.stringify({ section_id, name: author || 'Team', body: JSON.stringify(payload) })
+    });
+    if(!r.ok) throw new Error('save failed');
+    return await r.json();
+  }
+
+  function buildPhaseState(events, phaseKey, seedItems){
+    const items = {};
+    seedItems.forEach(s => { items[s.id] = { id:s.id, action:s.action, group:s.group||null, status:s.status||'Pending', deleted:false, comments:[] }; });
+
+    (events||[]).forEach(ev => {
+      const parts = ev.section_id.split('~');
+      if(parts[1] !== phaseKey) return;
+      const itemId = parts[2];
+      let payload; try{ payload = JSON.parse(ev.body); }catch(e){ return; }
+      if(!items[itemId]) items[itemId] = { id:itemId, action:'', group:null, status:'Pending', deleted:false, comments:[] };
+      if(payload.op === 'add'){
+        items[itemId].action = payload.action;
+        items[itemId].group = payload.group || null;
+        items[itemId].status = 'Pending';
+        items[itemId].deleted = false;
+      } else if(payload.op === 'status'){
+        items[itemId].status = payload.status;
+      } else if(payload.op === 'edit'){
+        items[itemId].action = payload.action;
+      } else if(payload.op === 'delete'){
+        items[itemId].deleted = true;
+      } else if(payload.op === 'comment'){
+        items[itemId].comments.push({ name: ev.name, text: payload.text, created_at: ev.created_at });
+      }
+    });
+    return Object.values(items).filter(i => !i.deleted);
+  }
+
+  function statusClass(status){
+    return 'status-' + status.toLowerCase().replace(/\s+/g,'-');
+  }
+
+  /* ============================================================
+     PHASE CONFIG — seeded from the Roadmap in the strategy
+     document. New items / edits added by the team append as
+     event rows, they don't modify this seed list.
+     ============================================================ */
+  const PHASES = [
+    { key:'ph1', num:'1', label:'First 30 Days', sub:'Prepare for Launch',
+      seed:[
+        {id:'p1i1', action:'Confirm inventory and launch timing.'},
+        {id:'p1i2', action:'Resolve blocked ASIN and remaining catalog/compliance issues.'},
+        {id:'p1i3', action:'Complete keyword and competitive research.'},
+        {id:'p1i4', action:'Optimize priority listings and Main Images.'},
+        {id:'p1i5', action:'Build product-level launch plans.'},
+        {id:'p1i6', action:'Prepare Vine and Creator Connections.'},
+        {id:'p1i7', action:'Finalize launch offers.'},
+        {id:'p1i8', action:'Finalize advertising approach.'},
+      ]},
+    { key:'ph2', num:'2', label:'Days 31–60', sub:'Launch & Establish',
+      seed:[
+        {id:'p2i1', action:'Launch products as inventory becomes available.'},
+        {id:'p2i2', action:'Activate launch offers and advertising.'},
+        {id:'p2i3', action:'Enroll eligible products in Vine.'},
+        {id:'p2i4', action:'Activate Creator Connections.'},
+        {id:'p2i5', action:'Establish branded and high-intent non-branded search visibility.'},
+        {id:'p2i6', action:'Monitor traffic, conversion, reviews, inventory, and advertising performance.'},
+        {id:'p2i7', action:'Address early conversion/content gaps.'},
+      ]},
+    { key:'ph3', num:'3', label:'Days 61–90', sub:'Optimize & Scale',
+      seed:[
+        {id:'p3i1', action:'Scale strongest-performing products and search opportunities.'},
+        {id:'p3i2', action:'Refine SEO and listings based on early search and conversion data.'},
+        {id:'p3i3', action:'Continue building reviews.'},
+        {id:'p3i4', action:'Scale Creator Connections where performance supports it.'},
+        {id:'p3i5', action:'Refine offers based on conversion and profitability.'},
+        {id:'p3i6', action:'Identify emerging patterns and product opportunities.'},
+        {id:'p3i7', action:'Define the next growth priorities based on initial launch performance.'},
+      ]},
+  ];
+
+  const STATUS_OPTIONS = ['Pending','In Progress','Complete'];
+  let ALL_TRACKER_EVENTS = [];
+
+  function renderTracker(){
+    const root = document.getElementById('trackerRoot');
+    root.innerHTML = '';
+    let total = 0, complete = 0;
+
+    const phaseStates = PHASES.map(phase => {
+      const items = buildPhaseState(ALL_TRACKER_EVENTS, phase.key, phase.seed);
+      total += items.length;
+      complete += items.filter(i => i.status === 'Complete').length;
+      return { phase, items };
+    });
+
+    const overallPct = total ? Math.round((complete/total)*100) : 0;
+    const progressWrap = document.createElement('div');
+    progressWrap.className = 'tk-progress-wrap';
+    progressWrap.innerHTML = `
+      <div class="tk-progress-stat">${complete}<span>/${total}</span></div>
+      <div class="tk-progress-track"><div class="tk-progress-fill" style="width:${overallPct}%"></div></div>
+      <div class="tk-progress-lbl">${overallPct}% Complete</div>`;
+    root.appendChild(progressWrap);
+
+    phaseStates.forEach(({phase, items}) => {
+      const wrap = document.createElement('div');
+      wrap.className = 'tk-phase';
+      wrap.innerHTML = `
+        <div class="tk-phase-hdr">
+          <div class="tk-phase-rule"></div>
+          <div class="tk-phase-pill"><span class="tk-phase-lbl">${escHtml(phase.label)}</span></div>
+          <div class="tk-phase-rule"></div>
+        </div>
+        <div class="tk-phase-sub" style="text-align:center;">${escHtml(phase.sub)}</div>
+        <div class="tk-body-mobile" data-phase="${phase.key}"></div>
+        <div class="tk-table-wrap" data-phase="${phase.key}"></div>
+        <button class="tk-add-toggle" data-phase="${phase.key}" data-role="add-toggle">+ Add Action to This Phase</button>
+        <div class="tk-add-form" data-phase="${phase.key}" style="display:none;">
+          <input type="text" placeholder="New action…" data-role="add-input">
+          <button class="tk-add-btn" data-role="add-submit">Add</button>
+        </div>
+      `;
+      root.appendChild(wrap);
+
+      const body = wrap.querySelector('.tk-body-mobile');
+      items.forEach(i => body.appendChild(renderTrackerCard(phase.key, i)));
+
+      const tableWrap = wrap.querySelector('.tk-table-wrap');
+      tableWrap.appendChild(renderTrackerTable(phase.key, items));
+
+      wrap.querySelector('[data-role="add-toggle"]').addEventListener('click', () => {
+        const form = wrap.querySelector('.tk-add-form');
+        form.style.display = form.style.display === 'none' ? 'flex' : 'none';
+        if (form.style.display === 'flex') form.querySelector('input').focus();
+      });
+      wrap.querySelector('[data-role="add-submit"]').addEventListener('click', async () => {
+        const input = wrap.querySelector('[data-role="add-input"]');
+        const val = input.value.trim();
+        if (!val) return;
+        const newId = 'new-' + Date.now() + '-' + Math.random().toString(36).slice(2,7);
+        const btn = wrap.querySelector('[data-role="add-submit"]');
+        btn.disabled = true; btn.textContent = 'Adding…';
+        try{
+          await pushTrackerEvent(phase.key, newId, 'Team', { op:'add', action: val, group:null });
+          input.value = '';
+          wrap.querySelector('.tk-add-form').style.display = 'none';
+          await reloadTracker();
+        }catch(e){
+          alert('Could not add action — check your connection and try again.');
+        }
+        btn.disabled = false; btn.textContent = 'Add';
+      });
+    });
+  }
+
+  /* ---------- shared comment panel markup + wiring ---------- */
+  function commentPanelBodyHTML(domId, item){
+    const commentCount = (item.comments || []).length;
+    const thread = commentCount === 0
+      ? '<p class="tk-no-comments">No comments yet on this action.</p>'
+      : item.comments.map(c => `
+          <div class="tk-comment-item">
+            <div class="tk-comment-item-header">
+              <span class="tk-comment-item-name">${escHtml(c.name||'Anonymous')}</span>
+              <span class="tk-comment-item-time">${formatDate(c.created_at)}</span>
+            </div>
+            <p class="tk-comment-item-text">${escHtml(c.text)}</p>
+          </div>`).join('');
+    return `
+      <div class="tk-comment-thread" id="tk-thread-${domId}">${thread}</div>
+      <div class="tk-comment-form">
+        <textarea id="tk-txt-${domId}" rows="2" placeholder="Add a comment on this action..."></textarea>
+        <div class="tk-comment-form-row">
+          <input type="text" id="tk-name-${domId}" placeholder="Your name (optional)">
+          <button class="tk-comment-post-btn" id="tk-btn-${domId}" data-role="comment-post">Post</button>
+        </div>
+        <div class="tk-comment-status" id="tk-status-msg-${domId}"></div>
+      </div>`;
+  }
+
+  function wireCommentForm(container, phaseKey, item, domId, reopenDomId){
+    container.querySelector('[data-role="comment-post"]').addEventListener('click', async () => {
+      const txt = document.getElementById(`tk-txt-${domId}`);
+      const nameEl = document.getElementById(`tk-name-${domId}`);
+      const btn = document.getElementById(`tk-btn-${domId}`);
+      const status = document.getElementById(`tk-status-msg-${domId}`);
+      const body = txt.value.trim();
+      if(!body){ status.textContent = 'Please write something first.'; status.style.color = '#cc1100'; return; }
+      btn.disabled = true; status.textContent = 'Posting...'; status.style.color = '#8a8a8a';
+      try{
+        await pushTrackerEvent(phaseKey, item.id, nameEl.value.trim() || 'Anonymous', { op:'comment', text: body });
+        await reloadTracker(reopenDomId);
+      }catch(e){
+        status.textContent = 'Failed to post. Please try again.'; status.style.color = '#cc1100';
+        btn.disabled = false;
+      }
+    });
+  }
+
+  /* ---------- shared edit-in-place wiring ---------- */
+  function editWrapHTML(domId, item){
+    return `
+      <div class="tk-edit-wrap" data-role="edit-wrap" id="tk-edit-${domId}">
+        <textarea class="tk-edit-textarea" data-role="edit-textarea">${escHtml(item.action)}</textarea>
+        <div class="tk-edit-actions">
+          <button class="tk-edit-save" data-role="edit-save">Save</button>
+          <button class="tk-edit-cancel" data-role="edit-cancel">Cancel</button>
+        </div>
+      </div>`;
+  }
+
+  function wireEditControls(container, phaseKey, item, domId, actionTextEl, reopenDomId){
+    const editToggle = container.querySelector('[data-role="edit-toggle"]');
+    const editWrap = container.querySelector('[data-role="edit-wrap"]');
+    const textarea = container.querySelector('[data-role="edit-textarea"]');
+    const saveBtn = container.querySelector('[data-role="edit-save"]');
+    const cancelBtn = container.querySelector('[data-role="edit-cancel"]');
+
+    editToggle.addEventListener('click', () => {
+      actionTextEl.classList.add('hidden');
+      editWrap.classList.add('open');
+      textarea.focus();
+      textarea.setSelectionRange(textarea.value.length, textarea.value.length);
+    });
+
+    cancelBtn.addEventListener('click', () => {
+      textarea.value = item.action;
+      editWrap.classList.remove('open');
+      actionTextEl.classList.remove('hidden');
+    });
+
+    saveBtn.addEventListener('click', async () => {
+      const newVal = textarea.value.trim();
+      if(!newVal) return;
+      saveBtn.disabled = true; saveBtn.textContent = 'Saving…';
+      try{
+        await pushTrackerEvent(phaseKey, item.id, 'Team', { op:'edit', action: newVal });
+        await reloadTracker(reopenDomId);
+      }catch(e){
+        alert('Could not save the edit — check your connection and try again.');
+        saveBtn.disabled = false; saveBtn.textContent = 'Save';
+      }
+    });
+  }
+
+  /* ---------- mobile card ---------- */
+  function renderTrackerCard(phaseKey, item){
+    const domId = `m-${phaseKey}-${item.id}`;
+    const commentCount = (item.comments || []).length;
+    const card = document.createElement('div');
+    card.className = 'tk-card';
+    card.innerHTML = `
+      <div class="tk-card-top">
+        <div class="tk-action-wrap">
+          <div class="tk-action" data-role="action-text">${escHtml(item.action)}</div>
+          ${editWrapHTML(domId, item)}
+        </div>
+        <div class="tk-card-controls">
+          <button class="tk-icon-btn" data-role="edit-toggle" title="Edit action">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </button>
+          <button class="tk-comment-btn ${commentCount>0?'has-comments':''}" data-role="comment-toggle" title="Comments">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Comment
+            ${commentCount>0?`<span class="tk-badge">${commentCount}</span>`:''}
+          </button>
+          <button class="tk-icon-btn" data-role="delete" title="Remove">✕</button>
+        </div>
+      </div>
+      <span class="tk-status-label">Status</span>
+      <select class="tk-status-select ${statusClass(item.status)}" data-role="status"></select>
+      <div class="tk-comment-panel" id="tk-panel-${domId}">${commentPanelBodyHTML(domId, item)}</div>`;
+
+    const actionTextEl = card.querySelector('[data-role="action-text"]');
+    wireEditControls(card, phaseKey, item, domId, actionTextEl, domId);
+
+    const select = card.querySelector('[data-role="status"]');
+    select.innerHTML = STATUS_OPTIONS.map(o => `<option value="${o}" ${o===item.status?'selected':''}>${o}</option>`).join('');
+    select.addEventListener('change', async (e) => {
+      const newStatus = e.target.value;
+      select.className = 'tk-status-select ' + statusClass(newStatus);
+      try{
+        await pushTrackerEvent(phaseKey, item.id, 'Team', { op:'status', status:newStatus });
+      }catch(err){ alert('Could not save status — check your connection.'); }
+      await reloadTracker();
+    });
+
+    card.querySelector('[data-role="delete"]').addEventListener('click', async () => {
+      if (!confirm('Remove this action from the tracker? This cannot be undone.')) return;
+      try{
+        await pushTrackerEvent(phaseKey, item.id, 'Team', { op:'delete' });
+        await reloadTracker();
+      }catch(e){ alert('Could not remove action — check your connection.'); }
+    });
+
+    card.querySelector('[data-role="comment-toggle"]').addEventListener('click', () => {
+      const panel = card.querySelector(`#tk-panel-${domId}`);
+      panel.classList.toggle('open');
+      if (panel.classList.contains('open')) {
+        setTimeout(() => { const t = document.getElementById(`tk-txt-${domId}`); if(t) t.focus(); }, 50);
+      }
+    });
+
+    wireCommentForm(card, phaseKey, item, domId, domId);
+    return card;
+  }
+
+  /* ---------- desktop table ---------- */
+  function renderTrackerTable(phaseKey, items){
+    const table = document.createElement('table');
+    table.className = 'tk-table';
+    table.innerHTML = `
+      <thead>
+        <tr>
+          <th>Action</th>
+          <th class="tk-th-center">Status</th>
+          <th class="tk-th-center">Edit</th>
+          <th class="tk-th-center">Comments</th>
+          <th class="tk-th-center"></th>
+        </tr>
+      </thead>
+      <tbody></tbody>`;
+    const tbody = table.querySelector('tbody');
+
+    items.forEach(item => {
+      const domId = `t-${phaseKey}-${item.id}`;
+      const commentCount = (item.comments || []).length;
+
+      const row = document.createElement('tr');
+      row.className = 'tk-row';
+      row.innerHTML = `
+        <td class="tk-td-action">
+          <div class="tk-action" data-role="action-text">${escHtml(item.action)}</div>
+          ${editWrapHTML(domId, item)}
+        </td>
+        <td class="tk-td-status"><select class="tk-status-select ${statusClass(item.status)}" data-role="status"></select></td>
+        <td class="tk-td-edit"><button class="tk-icon-btn" data-role="edit-toggle" title="Edit action">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        </button></td>
+        <td class="tk-td-comments">
+          <button class="tk-icon-btn ${commentCount>0?'has-comments':''}" data-role="comment-toggle" title="Comments">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            ${commentCount>0?`<span class="tk-badge">${commentCount}</span>`:''}
+          </button>
+        </td>
+        <td class="tk-td-delete"><button class="tk-icon-btn" data-role="delete" title="Remove">✕</button></td>`;
+
+      const commentRow = document.createElement('tr');
+      commentRow.className = 'tk-comment-row';
+      commentRow.id = `tk-panel-${domId}`;
+      commentRow.innerHTML = `<td colspan="5"><div class="tk-comment-row-inner">${commentPanelBodyHTML(domId, item)}</div></td>`;
+
+      const actionTextEl = row.querySelector('[data-role="action-text"]');
+      wireEditControls(row, phaseKey, item, domId, actionTextEl, domId);
+
+      const select = row.querySelector('[data-role="status"]');
+      select.innerHTML = STATUS_OPTIONS.map(o => `<option value="${o}" ${o===item.status?'selected':''}>${o}</option>`).join('');
+      select.addEventListener('change', async (e) => {
+        const newStatus = e.target.value;
+        select.className = 'tk-status-select ' + statusClass(newStatus);
+        try{
+          await pushTrackerEvent(phaseKey, item.id, 'Team', { op:'status', status:newStatus });
+        }catch(err){ alert('Could not save status — check your connection.'); }
+        await reloadTracker();
+      });
+
+      row.querySelector('[data-role="delete"]').addEventListener('click', async () => {
+        if (!confirm('Remove this action from the tracker? This cannot be undone.')) return;
+        try{
+          await pushTrackerEvent(phaseKey, item.id, 'Team', { op:'delete' });
+          await reloadTracker();
+        }catch(e){ alert('Could not remove action — check your connection.'); }
+      });
+
+      row.querySelector('[data-role="comment-toggle"]').addEventListener('click', () => {
+        commentRow.classList.toggle('open');
+        if (commentRow.classList.contains('open')) {
+          setTimeout(() => { const t = document.getElementById(`tk-txt-${domId}`); if(t) t.focus(); }, 50);
+        }
+      });
+
+      wireCommentForm(commentRow, phaseKey, item, domId, domId);
+
+      tbody.appendChild(row);
+      tbody.appendChild(commentRow);
+    });
+
+    return table;
+  }
+
+  async function reloadTracker(reopenDomId){
+    const events = await fetchTrackerEvents();
+    if (events !== null) ALL_TRACKER_EVENTS = events;
+    renderTracker();
+    if (reopenDomId){
+      const panel = document.getElementById('tk-panel-' + reopenDomId);
+      if (panel) panel.classList.add('open');
+    }
+  }
+
+  initComments();
+  reloadTracker();
+</script>
+</body>
+</html>
